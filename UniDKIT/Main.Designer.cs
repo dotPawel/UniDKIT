@@ -45,8 +45,11 @@
             uniScriptToolStripMenuItem = new ToolStripMenuItem();
             uniDKITToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             testingToolStripMenuItem = new ToolStripMenuItem();
             writeHighlightingTestToolStripMenuItem = new ToolStripMenuItem();
+            discordRPCToolStripMenuItem = new ToolStripMenuItem();
+            disposeClientToolStripMenuItem = new ToolStripMenuItem();
             uniPKGToolStripMenuItem = new ToolStripMenuItem();
             label2 = new Label();
             panel1 = new Panel();
@@ -58,7 +61,7 @@
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
-            aboutToolStripMenuItem = new ToolStripMenuItem();
+            setClientToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -179,14 +182,21 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(107, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // testingToolStripMenuItem
             // 
             testingToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
-            testingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { writeHighlightingTestToolStripMenuItem });
+            testingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { writeHighlightingTestToolStripMenuItem, discordRPCToolStripMenuItem });
             testingToolStripMenuItem.Name = "testingToolStripMenuItem";
             testingToolStripMenuItem.Size = new Size(62, 20);
             testingToolStripMenuItem.Text = "[Debug]";
@@ -197,6 +207,20 @@
             writeHighlightingTestToolStripMenuItem.Size = new Size(192, 22);
             writeHighlightingTestToolStripMenuItem.Text = "Write highlighting test";
             writeHighlightingTestToolStripMenuItem.Click += writeHighlightingTestToolStripMenuItem_Click;
+            // 
+            // discordRPCToolStripMenuItem
+            // 
+            discordRPCToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { disposeClientToolStripMenuItem, setClientToolStripMenuItem });
+            discordRPCToolStripMenuItem.Name = "discordRPCToolStripMenuItem";
+            discordRPCToolStripMenuItem.Size = new Size(192, 22);
+            discordRPCToolStripMenuItem.Text = "DiscordRPC";
+            // 
+            // disposeClientToolStripMenuItem
+            // 
+            disposeClientToolStripMenuItem.Name = "disposeClientToolStripMenuItem";
+            disposeClientToolStripMenuItem.Size = new Size(180, 22);
+            disposeClientToolStripMenuItem.Text = "Dispose client";
+            disposeClientToolStripMenuItem.Click += disposeClientToolStripMenuItem_Click;
             // 
             // uniPKGToolStripMenuItem
             // 
@@ -324,12 +348,12 @@
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
             // 
-            // aboutToolStripMenuItem
+            // setClientToolStripMenuItem
             // 
-            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
-            aboutToolStripMenuItem.Text = "About";
-            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+            setClientToolStripMenuItem.Name = "setClientToolStripMenuItem";
+            setClientToolStripMenuItem.Size = new Size(180, 22);
+            setClientToolStripMenuItem.Text = "Set client";
+            setClientToolStripMenuItem.Click += setClientToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -393,53 +417,12 @@
         private ToolStripMenuItem closeFileToolStripMenuItem;
         private ToolStripMenuItem uniPKGToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem discordRPCToolStripMenuItem;
+        private ToolStripMenuItem disposeClientToolStripMenuItem;
+        private ToolStripMenuItem setClientToolStripMenuItem;
 
         /*
-            Litwo! Ojczyzno moja! ty jesteś jak zdrowie.
-
-            Ile cię trzeba cenić, ten tylko się dowie,
-
-            Kto cię stracił. Dziś piękność twą w całej ozdobie
-
-            Widzę i opisuję, bo tęsknię po tobie.
-
- 
-
-            Panno Święta, co Jasnej bronisz Częstochowy
-
-            I w Ostrej świecisz Bramie! Ty, co gród zamkowy
-
-            Nowogródzki ochraniasz z jego wiernym ludem!
-
-            Jak mnie dziecko do zdrowia powróciłaś cudem
-
-            (Gdy od płaczącej matki pod Twoję opiekę
-
-            Ofiarowany, martwą podniosłem powiekę
-
-            I zaraz mogłem pieszo do Twych świątyń progu
-
-            Iść za wrócone życie podziękować Bogu),
-
-            Tak nas powrócisz cudem na Ojczyzny łono.
-
-            Tymczasem przenoś moję duszę utęsknioną
-
-            Do tych pagórków leśnych, do tych łąk zielonych,
-
-            Szeroko nad błękitnym Niemnem rozciągnionych;
-
-            Do tych pól malowanych zbożem rozmaitem,
-
-            Wyzłacanych pszenicą, posrebrzanych żytem;
-
-            Gdzie bursztynowy świerzop, gryka jak śnieg biała,
-
-            Gdzie panieńskim rumieńcem dzięcielina pała,
-
-            A wszystko przepasane, jakby wstęgą, miedzą
-
-            Zieloną, na niej z rzadka ciche grusze siedzą.
+            Jebac Mickiewicza
         */
     }
 }

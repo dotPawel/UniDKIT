@@ -1,3 +1,4 @@
+using DiscordRPC;
 using FastColoredTextBoxNS;
 using System.Diagnostics;
 using System.IO;
@@ -10,7 +11,8 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "0.6-pre-d";
+        public static string Version = "0.7-pre-d";
+        private DiscordRpcClient client;
 
         // whar
         Style BlueStyle = new TextStyle(Brushes.SteelBlue, null, FontStyle.Regular);
@@ -47,8 +49,11 @@ namespace UniDKIT
             {
                 testingToolStripMenuItem.Visible = false;
             }
-        }
 
+            client = new DiscordRpcClient("1118613368866099200");
+            client.Initialize();
+            SetDiscordRPC();
+        }
         public void LoadFile(string FileP)
         {
             FilePath = FileP;
@@ -97,6 +102,34 @@ namespace UniDKIT
                 MessageBox.Show("Loading FileTree failed\n\n Exception : " + ex.Message);
                 StatusText.Text = "Loading FileTree failed";
             }
+        }
+        public void SetDiscordRPC()
+        {
+            string details = "";
+            string state = "";
+            if (FilePath == null)
+            {
+                details = "Idling..";
+                state = "No file loaded";
+            }
+            else
+            {
+                details = "Editing a " + Path.GetExtension(FilePath) + " file";
+                state = "File name : " + Path.GetFileName(FilePath);
+            }
+            client.ClearPresence();
+            client.SetPresence(new RichPresence()
+            {
+                Details = details,
+                State = state,
+
+                Assets = new Assets()
+                {
+                    LargeImageKey = "unidkit_icon",
+                    LargeImageText = "Not yet!",
+                    //SmallImageKey = "blah"
+                }
+            });
         }
 
         private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
@@ -217,6 +250,7 @@ namespace UniDKIT
                         }
                         LoadFile(FilePath);
                     }
+                    SetDiscordRPC();
                 }
                 else
                 {
@@ -242,6 +276,7 @@ namespace UniDKIT
                     if (OpenDialog.ShowDialog() == DialogResult.OK)
                     {
                         LoadFile(OpenDialog.FileName);
+                        SetDiscordRPC();
                     }
                     else
                     {
@@ -313,6 +348,7 @@ namespace UniDKIT
 
                 LoadFile(Path.GetDirectoryName(DirPath) + @"\" + e.Node.FullPath);
                 StatusText.Text = "Loaded file from tree (" + e.Node.Text + ")";
+                SetDiscordRPC();
             }
             catch (Exception ex)
             {
@@ -351,7 +387,7 @@ namespace UniDKIT
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (FilePath != null)
+            if (FilePath != null && OldFileContents != Textbox.Text)
             {
                 StatusText.Text = "File changes detected";
                 DialogResult dialogResult = MessageBox.Show("Save changes to file?", "File changes detected", MessageBoxButtons.YesNo);
@@ -365,6 +401,7 @@ namespace UniDKIT
                     return;
                 }
             }
+            client.Dispose();
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -381,13 +418,23 @@ namespace UniDKIT
                 Textbox.Text = "";
                 FilePath = null;
                 FilePathText.Text = "Closed file";
+                SetDiscordRPC();
             }
         }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var about = new About();
             about.Show();
+        }
+        private void disposeClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            client.Dispose();
+            StatusText.Text = "[Debug] Disposed discord client";
+        }
+        private void setClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDiscordRPC();
+            StatusText.Text = "[Debug] Set DiscordRPC";
         }
     }
 }
