@@ -43,6 +43,9 @@
             openInExplorerToolStripMenuItem = new ToolStripMenuItem();
             reloadFileTreeToolStripMenuItem = new ToolStripMenuItem();
             uniScriptToolStripMenuItem = new ToolStripMenuItem();
+            versionToolStripMenuItem = new ToolStripMenuItem();
+            rToolStripMenuItem = new ToolStripMenuItem();
+            rToolStripMenuItem1 = new ToolStripMenuItem();
             uniDKITToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -50,9 +53,13 @@
             writeHighlightingTestToolStripMenuItem = new ToolStripMenuItem();
             discordRPCToolStripMenuItem = new ToolStripMenuItem();
             disposeClientToolStripMenuItem = new ToolStripMenuItem();
+            setClientToolStripMenuItem = new ToolStripMenuItem();
             uniPKGToolStripMenuItem = new ToolStripMenuItem();
-            label2 = new Label();
+            packageVerifierToolStripMenuItem = new ToolStripMenuItem();
+            UnscVersionText = new Label();
             panel1 = new Panel();
+            label2 = new Label();
+            pictureBox1 = new PictureBox();
             label1 = new Label();
             VersionText = new Label();
             panel2 = new Panel();
@@ -61,10 +68,11 @@
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
-            setClientToolStripMenuItem = new ToolStripMenuItem();
+            unloadDirectoryToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Textbox).BeginInit();
             FileTreePanel.SuspendLayout();
@@ -77,9 +85,9 @@
             TopPanel.BackColor = Color.FromArgb(68, 68, 68);
             TopPanel.Controls.Add(FilePathText);
             TopPanel.Controls.Add(Toolbar);
-            TopPanel.Location = new Point(166, 9);
+            TopPanel.Location = new Point(183, 9);
             TopPanel.Name = "TopPanel";
-            TopPanel.Size = new Size(918, 60);
+            TopPanel.Size = new Size(901, 60);
             TopPanel.TabIndex = 0;
             // 
             // FilePathText
@@ -97,9 +105,9 @@
             Toolbar.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, directoryToolStripMenuItem, uniScriptToolStripMenuItem, uniDKITToolStripMenuItem, testingToolStripMenuItem, uniPKGToolStripMenuItem });
             Toolbar.Location = new Point(0, 0);
             Toolbar.Name = "Toolbar";
-            Toolbar.Size = new Size(918, 24);
+            Toolbar.Size = new Size(901, 24);
             Toolbar.TabIndex = 0;
-            Toolbar.Text = "menuStrip1";
+            Toolbar.Text = "Toolbar";
             // 
             // fileToolStripMenuItem
             // 
@@ -138,7 +146,7 @@
             // 
             // directoryToolStripMenuItem
             // 
-            directoryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, openInExplorerToolStripMenuItem, reloadFileTreeToolStripMenuItem });
+            directoryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, openInExplorerToolStripMenuItem, reloadFileTreeToolStripMenuItem, unloadDirectoryToolStripMenuItem });
             directoryToolStripMenuItem.Name = "directoryToolStripMenuItem";
             directoryToolStripMenuItem.Size = new Size(67, 20);
             directoryToolStripMenuItem.Text = "Directory";
@@ -146,29 +154,50 @@
             // openToolStripMenuItem1
             // 
             openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            openToolStripMenuItem1.Size = new Size(162, 22);
+            openToolStripMenuItem1.Size = new Size(180, 22);
             openToolStripMenuItem1.Text = "Open";
             openToolStripMenuItem1.Click += openToolStripMenuItem1_Click;
             // 
             // openInExplorerToolStripMenuItem
             // 
             openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
-            openInExplorerToolStripMenuItem.Size = new Size(162, 22);
+            openInExplorerToolStripMenuItem.Size = new Size(180, 22);
             openInExplorerToolStripMenuItem.Text = "Open in explorer";
             openInExplorerToolStripMenuItem.Click += openInExplorerToolStripMenuItem_Click;
             // 
             // reloadFileTreeToolStripMenuItem
             // 
             reloadFileTreeToolStripMenuItem.Name = "reloadFileTreeToolStripMenuItem";
-            reloadFileTreeToolStripMenuItem.Size = new Size(162, 22);
+            reloadFileTreeToolStripMenuItem.Size = new Size(180, 22);
             reloadFileTreeToolStripMenuItem.Text = "Reload file tree";
             reloadFileTreeToolStripMenuItem.Click += reloadFileTreeToolStripMenuItem_Click;
             // 
             // uniScriptToolStripMenuItem
             // 
+            uniScriptToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { versionToolStripMenuItem });
             uniScriptToolStripMenuItem.Name = "uniScriptToolStripMenuItem";
             uniScriptToolStripMenuItem.Size = new Size(67, 20);
             uniScriptToolStripMenuItem.Text = "UniScript";
+            // 
+            // versionToolStripMenuItem
+            // 
+            versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1 });
+            versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            versionToolStripMenuItem.Size = new Size(112, 22);
+            versionToolStripMenuItem.Text = "Version";
+            versionToolStripMenuItem.DropDownItemClicked += versionToolStripMenuItem_DropDownItemClicked;
+            // 
+            // rToolStripMenuItem
+            // 
+            rToolStripMenuItem.Name = "rToolStripMenuItem";
+            rToolStripMenuItem.Size = new Size(93, 22);
+            rToolStripMenuItem.Text = "5.4r";
+            // 
+            // rToolStripMenuItem1
+            // 
+            rToolStripMenuItem1.Name = "rToolStripMenuItem1";
+            rToolStripMenuItem1.Size = new Size(93, 22);
+            rToolStripMenuItem1.Text = "6.0r";
             // 
             // uniDKITToolStripMenuItem
             // 
@@ -218,40 +247,78 @@
             // disposeClientToolStripMenuItem
             // 
             disposeClientToolStripMenuItem.Name = "disposeClientToolStripMenuItem";
-            disposeClientToolStripMenuItem.Size = new Size(180, 22);
+            disposeClientToolStripMenuItem.Size = new Size(147, 22);
             disposeClientToolStripMenuItem.Text = "Dispose client";
             disposeClientToolStripMenuItem.Click += disposeClientToolStripMenuItem_Click;
             // 
+            // setClientToolStripMenuItem
+            // 
+            setClientToolStripMenuItem.Name = "setClientToolStripMenuItem";
+            setClientToolStripMenuItem.Size = new Size(147, 22);
+            setClientToolStripMenuItem.Text = "Set client";
+            setClientToolStripMenuItem.Click += setClientToolStripMenuItem_Click;
+            // 
             // uniPKGToolStripMenuItem
             // 
+            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem });
             uniPKGToolStripMenuItem.Name = "uniPKGToolStripMenuItem";
             uniPKGToolStripMenuItem.Size = new Size(58, 20);
             uniPKGToolStripMenuItem.Text = "UniPKG";
             // 
-            // label2
+            // packageVerifierToolStripMenuItem
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 34);
-            label2.Name = "label2";
-            label2.Size = new Size(124, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Property of Pawełcorp";
+            packageVerifierToolStripMenuItem.Name = "packageVerifierToolStripMenuItem";
+            packageVerifierToolStripMenuItem.Size = new Size(157, 22);
+            packageVerifierToolStripMenuItem.Text = "Package verifier";
+            packageVerifierToolStripMenuItem.Click += packageVerifierToolStripMenuItem_Click;
+            // 
+            // UnscVersionText
+            // 
+            UnscVersionText.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            UnscVersionText.AutoSize = true;
+            UnscVersionText.Location = new Point(1036, 2);
+            UnscVersionText.Name = "UnscVersionText";
+            UnscVersionText.RightToLeft = RightToLeft.Yes;
+            UnscVersionText.Size = new Size(30, 15);
+            UnscVersionText.TabIndex = 1;
+            UnscVersionText.Text = "X.Xx";
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(68, 68, 68);
             panel1.Controls.Add(label2);
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(VersionText);
             panel1.Location = new Point(12, 9);
             panel1.Name = "panel1";
-            panel1.Size = new Size(148, 60);
+            panel1.Size = new Size(165, 60);
             panel1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(75, 39);
+            label2.Name = "label2";
+            label2.Size = new Size(73, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Pawełcorp©";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = Properties.Resources.unidkit_icon;
+            pictureBox1.Location = new Point(3, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(53, 53);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 4);
+            label1.Location = new Point(59, 9);
             label1.Name = "label1";
             label1.Size = new Size(91, 15);
             label1.TabIndex = 1;
@@ -260,7 +327,7 @@
             // VersionText
             // 
             VersionText.AutoSize = true;
-            VersionText.Location = new Point(3, 19);
+            VersionText.Location = new Point(65, 24);
             VersionText.Name = "VersionText";
             VersionText.Size = new Size(66, 15);
             VersionText.TabIndex = 0;
@@ -271,9 +338,9 @@
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(68, 68, 68);
             panel2.Controls.Add(Textbox);
-            panel2.Location = new Point(166, 75);
+            panel2.Location = new Point(183, 75);
             panel2.Name = "panel2";
-            panel2.Size = new Size(918, 529);
+            panel2.Size = new Size(901, 529);
             panel2.TabIndex = 2;
             // 
             // Textbox
@@ -297,7 +364,7 @@
             Textbox.Paddings = new Padding(0);
             Textbox.SelectionColor = Color.FromArgb(80, 0, 0, 255);
             Textbox.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("Textbox.ServiceColors");
-            Textbox.Size = new Size(912, 523);
+            Textbox.Size = new Size(895, 523);
             Textbox.TabIndex = 0;
             Textbox.Zoom = 100;
             Textbox.TextChanged += Textbox_TextChanged;
@@ -310,7 +377,7 @@
             FileTreePanel.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FileTreePanel.Location = new Point(12, 75);
             FileTreePanel.Name = "FileTreePanel";
-            FileTreePanel.Size = new Size(148, 529);
+            FileTreePanel.Size = new Size(165, 529);
             FileTreePanel.TabIndex = 3;
             // 
             // FileTree
@@ -323,7 +390,7 @@
             FileTree.ItemHeight = 19;
             FileTree.Location = new Point(3, 3);
             FileTree.Name = "FileTree";
-            FileTree.Size = new Size(142, 523);
+            FileTree.Size = new Size(159, 523);
             FileTree.TabIndex = 0;
             FileTree.NodeMouseDoubleClick += FileTree_NodeMouseDoubleClick;
             // 
@@ -331,6 +398,7 @@
             // 
             StatusPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             StatusPanel.BackColor = Color.DimGray;
+            StatusPanel.Controls.Add(UnscVersionText);
             StatusPanel.Controls.Add(StatusText);
             StatusPanel.Location = new Point(15, 610);
             StatusPanel.Name = "StatusPanel";
@@ -348,12 +416,12 @@
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
             // 
-            // setClientToolStripMenuItem
+            // unloadDirectoryToolStripMenuItem
             // 
-            setClientToolStripMenuItem.Name = "setClientToolStripMenuItem";
-            setClientToolStripMenuItem.Size = new Size(180, 22);
-            setClientToolStripMenuItem.Text = "Set client";
-            setClientToolStripMenuItem.Click += setClientToolStripMenuItem_Click;
+            unloadDirectoryToolStripMenuItem.Name = "unloadDirectoryToolStripMenuItem";
+            unloadDirectoryToolStripMenuItem.Size = new Size(180, 22);
+            unloadDirectoryToolStripMenuItem.Text = "Unload directory";
+            unloadDirectoryToolStripMenuItem.Click += unloadDirectoryToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -378,6 +446,7 @@
             Toolbar.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Textbox).EndInit();
             FileTreePanel.ResumeLayout(false);
@@ -397,7 +466,6 @@
         private ToolStripMenuItem saveToolStripMenuItem;
         private Label VersionText;
         private Label label1;
-        private Label label2;
         private Panel panel2;
         private FastColoredTextBoxNS.FastColoredTextBox Textbox;
         private ToolStripMenuItem testingToolStripMenuItem;
@@ -420,6 +488,14 @@
         private ToolStripMenuItem discordRPCToolStripMenuItem;
         private ToolStripMenuItem disposeClientToolStripMenuItem;
         private ToolStripMenuItem setClientToolStripMenuItem;
+        private ToolStripMenuItem versionToolStripMenuItem;
+        private ToolStripMenuItem rToolStripMenuItem;
+        private Label UnscVersionText;
+        private ToolStripMenuItem rToolStripMenuItem1;
+        private PictureBox pictureBox1;
+        private Label label2;
+        private ToolStripMenuItem packageVerifierToolStripMenuItem;
+        private ToolStripMenuItem unloadDirectoryToolStripMenuItem;
 
         /*
             Jebac Mickiewicza

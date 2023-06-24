@@ -2,6 +2,7 @@ using DiscordRPC;
 using FastColoredTextBoxNS;
 using System.Diagnostics;
 using System.IO;
+using System.Net.NetworkInformation;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -11,7 +12,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "0.7-pre-d";
+        public static string Version = "pre-7d";
         private DiscordRpcClient client;
 
         // whar
@@ -30,6 +31,8 @@ namespace UniDKIT
         public static string DirPath;
 
         public static string OldFileContents;
+
+        public static string UnscVersion = "6.0r";
         public Main()
         {
             InitializeComponent();
@@ -49,6 +52,8 @@ namespace UniDKIT
             {
                 testingToolStripMenuItem.Visible = false;
             }
+
+            UnscVersionText.Text = UnscVersion;
 
             client = new DiscordRpcClient("1118613368866099200");
             client.Initialize();
@@ -174,20 +179,40 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(CoralStyle, @"end", RegexOptions.Multiline);
 
             // customization and ironpython
-            e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueVioletStyle, @"starttext", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueVioletStyle, @"prompttext", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueVioletStyle, @"textmodules", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.Multiline);
+            if (UnscVersion == "6.0r")
+            {
+                e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"stxt", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"ptxt", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"tmdl", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.Multiline);
 
+                // 6.0r changes
+
+                //e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline); switched out for make
+                e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.Multiline);
+                //e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline); switched out for wrt
+                //e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline); switched out for wrt
+                //e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline); switched out for rd or removed entirely
+            }
+            else
+            {
+                e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"starttext", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"prompttext", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"textmodules", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.Multiline);
+
+                e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"write-template", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline);
+            }
             e.ChangedRange.SetStyle(CoralStyle, @"open", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"parse", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"write-template", RegexOptions.Multiline);
             e.ChangedRange.SetStyle(CoralStyle, @"example", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"parse", RegexOptions.Multiline);
+
 
             // aerocl backbridge
             e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.Multiline);
@@ -316,6 +341,9 @@ namespace UniDKIT
             if (OpenDialog.ShowDialog() == DialogResult.OK)
             {
                 DirPath = OpenDialog.SelectedPath;
+
+
+
                 LoadFileTree();
             }
             else
@@ -435,6 +463,32 @@ namespace UniDKIT
         {
             SetDiscordRPC();
             StatusText.Text = "[Debug] Set DiscordRPC";
+        }
+
+        private void versionToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            UnscVersion = e.ClickedItem.Text;
+            if (e.ClickedItem.Text == "5.4r")
+            {
+                UnscVersionText.Text = "5.4r";
+            }
+            if (e.ClickedItem.Text == "6.0r")
+            {
+                UnscVersionText.Text = "6.0r";
+            }
+            Textbox.OnTextChanged();
+        }
+
+        private void packageVerifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var PackageVerifier = new PackageVerifier();
+            PackageVerifier.Show();
+        }
+
+        private void unloadDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DirPath = null;
+            FileTree.Nodes.Clear();
         }
     }
 }
