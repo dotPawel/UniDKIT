@@ -12,7 +12,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "pre-7d";
+        public static string Version = "pre-8d";
         private DiscordRpcClient client;
 
         // whar
@@ -464,7 +464,6 @@ namespace UniDKIT
             SetDiscordRPC();
             StatusText.Text = "[Debug] Set DiscordRPC";
         }
-
         private void versionToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             UnscVersion = e.ClickedItem.Text;
@@ -478,17 +477,20 @@ namespace UniDKIT
             }
             Textbox.OnTextChanged();
         }
-
         private void packageVerifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var PackageVerifier = new PackageVerifier();
             PackageVerifier.Show();
         }
-
         private void unloadDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DirPath = null;
             FileTree.Nodes.Clear();
+        }
+        private void packageInformationParserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var PkginfoParser = new PkginfoParser();
+            PkginfoParser.Show();
         }
     }
 }

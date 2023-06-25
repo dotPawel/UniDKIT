@@ -66,6 +66,7 @@ namespace UniDKIT
             CheckPkgInfo();
             CheckInst();
             CheckUninst();
+            CheckFilenames();
 
             void CheckPkgInfo()
             {
@@ -160,10 +161,39 @@ namespace UniDKIT
             }
             void CheckFilenames()
             {
-                string PkgInfoFileName = PkgInfoFiles[0].Replace(".pkginfo", "");
-                string InstFileName = InstFiles[0].Replace(".inst", "");
-                string UninstFileName = InstFiles[0].Replace(".uninst", "");
+                string PkgInfoFileName = Path.GetFileName(PkgInfoFiles[0].Replace(".pkginfo", ""));
+                string InstFileName = Path.GetFileName(InstFiles[0].Replace(".inst", ""));
+                string UninstFileName = Path.GetFileName(UninstFiles[0].Replace(".uninst", ""));
+
+                // find the differently named file yourself dipshit
+                if (!String.Equals(PkgInfoFileName, InstFileName) && !String.Equals(PkgInfoFileName, UninstFileName))
+                {
+                    UninstOkText.ForeColor = Color.Red;
+                    DetailTextUninst.ForeColor = Color.Red;
+
+                    UninstOkText.Text = "Name error";
+                    DetailTextUninst.Text = "File name error, package will not install";
+
+
+                    InstOkText.ForeColor = Color.Red;
+                    DetailTextInst.ForeColor = Color.Red;
+
+                    InstOkText.Text = "Name error";
+                    DetailTextInst.Text = "File name error, package will not install";
+
+
+                    PkginfoOkText.ForeColor = Color.Red;
+                    DetailTextPkgInfo.ForeColor = Color.Red;
+
+                    PkginfoOkText.Text = "Name error";
+                    DetailTextPkgInfo.Text = "File name error, package will not install";
+                }
             }
+        }
+
+        private void PathTextbox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

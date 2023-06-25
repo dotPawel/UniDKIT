@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageVerifier));
             panel1 = new Panel();
             DetailTextUninst = new Label();
             DetailTextInst = new Label();
@@ -180,6 +181,7 @@
             PathTextbox.Name = "PathTextbox";
             PathTextbox.Size = new Size(188, 23);
             PathTextbox.TabIndex = 6;
+            PathTextbox.TextChanged += PathTextbox_TextChanged;
             // 
             // CheckPackageButton
             // 
@@ -205,6 +207,7 @@
             Controls.Add(panel1);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "PackageVerifier";
             Text = "Package Verifier";
             Load += PackageVerifier_Load;

@@ -42,6 +42,7 @@
             openToolStripMenuItem1 = new ToolStripMenuItem();
             openInExplorerToolStripMenuItem = new ToolStripMenuItem();
             reloadFileTreeToolStripMenuItem = new ToolStripMenuItem();
+            unloadDirectoryToolStripMenuItem = new ToolStripMenuItem();
             uniScriptToolStripMenuItem = new ToolStripMenuItem();
             versionToolStripMenuItem = new ToolStripMenuItem();
             rToolStripMenuItem = new ToolStripMenuItem();
@@ -56,6 +57,7 @@
             setClientToolStripMenuItem = new ToolStripMenuItem();
             uniPKGToolStripMenuItem = new ToolStripMenuItem();
             packageVerifierToolStripMenuItem = new ToolStripMenuItem();
+            packageInformationParserToolStripMenuItem = new ToolStripMenuItem();
             UnscVersionText = new Label();
             panel1 = new Panel();
             label2 = new Label();
@@ -68,7 +70,6 @@
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
-            unloadDirectoryToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -154,23 +155,30 @@
             // openToolStripMenuItem1
             // 
             openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            openToolStripMenuItem1.Size = new Size(180, 22);
+            openToolStripMenuItem1.Size = new Size(162, 22);
             openToolStripMenuItem1.Text = "Open";
             openToolStripMenuItem1.Click += openToolStripMenuItem1_Click;
             // 
             // openInExplorerToolStripMenuItem
             // 
             openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
-            openInExplorerToolStripMenuItem.Size = new Size(180, 22);
+            openInExplorerToolStripMenuItem.Size = new Size(162, 22);
             openInExplorerToolStripMenuItem.Text = "Open in explorer";
             openInExplorerToolStripMenuItem.Click += openInExplorerToolStripMenuItem_Click;
             // 
             // reloadFileTreeToolStripMenuItem
             // 
             reloadFileTreeToolStripMenuItem.Name = "reloadFileTreeToolStripMenuItem";
-            reloadFileTreeToolStripMenuItem.Size = new Size(180, 22);
+            reloadFileTreeToolStripMenuItem.Size = new Size(162, 22);
             reloadFileTreeToolStripMenuItem.Text = "Reload file tree";
             reloadFileTreeToolStripMenuItem.Click += reloadFileTreeToolStripMenuItem_Click;
+            // 
+            // unloadDirectoryToolStripMenuItem
+            // 
+            unloadDirectoryToolStripMenuItem.Name = "unloadDirectoryToolStripMenuItem";
+            unloadDirectoryToolStripMenuItem.Size = new Size(162, 22);
+            unloadDirectoryToolStripMenuItem.Text = "Unload directory";
+            unloadDirectoryToolStripMenuItem.Click += unloadDirectoryToolStripMenuItem_Click;
             // 
             // uniScriptToolStripMenuItem
             // 
@@ -260,7 +268,7 @@
             // 
             // uniPKGToolStripMenuItem
             // 
-            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem });
+            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem, packageInformationParserToolStripMenuItem });
             uniPKGToolStripMenuItem.Name = "uniPKGToolStripMenuItem";
             uniPKGToolStripMenuItem.Size = new Size(58, 20);
             uniPKGToolStripMenuItem.Text = "UniPKG";
@@ -268,9 +276,16 @@
             // packageVerifierToolStripMenuItem
             // 
             packageVerifierToolStripMenuItem.Name = "packageVerifierToolStripMenuItem";
-            packageVerifierToolStripMenuItem.Size = new Size(157, 22);
+            packageVerifierToolStripMenuItem.Size = new Size(219, 22);
             packageVerifierToolStripMenuItem.Text = "Package verifier";
             packageVerifierToolStripMenuItem.Click += packageVerifierToolStripMenuItem_Click;
+            // 
+            // packageInformationParserToolStripMenuItem
+            // 
+            packageInformationParserToolStripMenuItem.Name = "packageInformationParserToolStripMenuItem";
+            packageInformationParserToolStripMenuItem.Size = new Size(219, 22);
+            packageInformationParserToolStripMenuItem.Text = "Package information parser";
+            packageInformationParserToolStripMenuItem.Click += packageInformationParserToolStripMenuItem_Click;
             // 
             // UnscVersionText
             // 
@@ -416,13 +431,6 @@
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
             // 
-            // unloadDirectoryToolStripMenuItem
-            // 
-            unloadDirectoryToolStripMenuItem.Name = "unloadDirectoryToolStripMenuItem";
-            unloadDirectoryToolStripMenuItem.Size = new Size(180, 22);
-            unloadDirectoryToolStripMenuItem.Text = "Unload directory";
-            unloadDirectoryToolStripMenuItem.Click += unloadDirectoryToolStripMenuItem_Click;
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -435,6 +443,7 @@
             Controls.Add(panel1);
             Controls.Add(TopPanel);
             ForeColor = SystemColors.Control;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = Toolbar;
             Name = "Main";
             Text = "UniDKIT";
@@ -496,6 +505,7 @@
         private Label label2;
         private ToolStripMenuItem packageVerifierToolStripMenuItem;
         private ToolStripMenuItem unloadDirectoryToolStripMenuItem;
+        private ToolStripMenuItem packageInformationParserToolStripMenuItem;
 
         /*
             Jebac Mickiewicza
