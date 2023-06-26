@@ -342,8 +342,6 @@ namespace UniDKIT
             {
                 DirPath = OpenDialog.SelectedPath;
 
-
-
                 LoadFileTree();
             }
             else

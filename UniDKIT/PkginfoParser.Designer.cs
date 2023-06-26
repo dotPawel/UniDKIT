@@ -32,8 +32,8 @@
             PathTextbox = new TextBox();
             BrowseButton = new Button();
             panel1 = new Panel();
-            OutputTextbox = new TextBox();
             ParseButton = new Button();
+            OutputTextbox = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -42,15 +42,15 @@
             PathTextbox.BackColor = Color.FromArgb(68, 68, 68);
             PathTextbox.BorderStyle = BorderStyle.FixedSingle;
             PathTextbox.ForeColor = SystemColors.Control;
-            PathTextbox.Location = new Point(12, 12);
+            PathTextbox.Location = new Point(15, 12);
             PathTextbox.Name = "PathTextbox";
-            PathTextbox.Size = new Size(188, 23);
+            PathTextbox.Size = new Size(156, 23);
             PathTextbox.TabIndex = 8;
             // 
             // BrowseButton
             // 
             BrowseButton.FlatStyle = FlatStyle.Flat;
-            BrowseButton.Location = new Point(206, 12);
+            BrowseButton.Location = new Point(177, 12);
             BrowseButton.Name = "BrowseButton";
             BrowseButton.Size = new Size(58, 23);
             BrowseButton.TabIndex = 7;
@@ -65,8 +65,19 @@
             panel1.Controls.Add(OutputTextbox);
             panel1.Location = new Point(12, 41);
             panel1.Name = "panel1";
-            panel1.Size = new Size(251, 206);
+            panel1.Size = new Size(223, 163);
             panel1.TabIndex = 9;
+            // 
+            // ParseButton
+            // 
+            ParseButton.FlatStyle = FlatStyle.Flat;
+            ParseButton.Location = new Point(0, 3);
+            ParseButton.Name = "ParseButton";
+            ParseButton.Size = new Size(220, 35);
+            ParseButton.TabIndex = 1;
+            ParseButton.Text = "Parse";
+            ParseButton.UseVisualStyleBackColor = true;
+            ParseButton.Click += ParseButton_Click;
             // 
             // OutputTextbox
             // 
@@ -76,25 +87,17 @@
             OutputTextbox.Location = new Point(3, 44);
             OutputTextbox.Multiline = true;
             OutputTextbox.Name = "OutputTextbox";
-            OutputTextbox.Size = new Size(245, 159);
+            OutputTextbox.ReadOnly = true;
+            OutputTextbox.Size = new Size(217, 116);
             OutputTextbox.TabIndex = 0;
-            // 
-            // ParseButton
-            // 
-            ParseButton.FlatStyle = FlatStyle.Flat;
-            ParseButton.Location = new Point(0, 3);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(245, 35);
-            ParseButton.TabIndex = 1;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
+            OutputTextbox.Text = "No file parsed";
             // 
             // PkginfoParser
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(55, 55, 55);
-            ClientSize = new Size(275, 259);
+            ClientSize = new Size(243, 213);
             Controls.Add(panel1);
             Controls.Add(PathTextbox);
             Controls.Add(BrowseButton);
@@ -103,6 +106,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "PkginfoParser";
             Text = "Package Information Parser";
+            Load += PkginfoParser_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
