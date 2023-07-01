@@ -371,7 +371,6 @@ namespace UniDKIT
                         return;
                     }
                 }
-
                 LoadFile(Path.GetDirectoryName(DirPath) + @"\" + e.Node.FullPath);
                 StatusText.Text = "Loaded file from tree (" + e.Node.Text + ")";
                 SetDiscordRPC();
@@ -489,6 +488,12 @@ namespace UniDKIT
         {
             var PkginfoParser = new PkginfoParser();
             PkginfoParser.Show();
+        }
+
+        private void packagerDepackagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var Packager = new Packager();
+            Packager.Show();
         }
     }
 }

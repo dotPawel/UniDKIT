@@ -7,6 +7,9 @@
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Packager.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PackageVerifier.cs">
       <SubType>Form</SubType>
     </Compile>
