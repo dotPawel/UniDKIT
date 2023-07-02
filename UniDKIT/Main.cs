@@ -495,5 +495,11 @@ namespace UniDKIT
             var Packager = new Packager();
             Packager.Show();
         }
+
+        private void temporaryInstallEnvironmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var tienv = new TempInstallEnv();
+            tienv.Show();
+        }
     }
 }

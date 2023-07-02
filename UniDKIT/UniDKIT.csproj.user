@@ -16,5 +16,8 @@
     <Compile Update="PkginfoParser.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="TempInstallEnv.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

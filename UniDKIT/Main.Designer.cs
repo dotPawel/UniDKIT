@@ -58,6 +58,7 @@
             uniPKGToolStripMenuItem = new ToolStripMenuItem();
             packageVerifierToolStripMenuItem = new ToolStripMenuItem();
             packageInformationParserToolStripMenuItem = new ToolStripMenuItem();
+            packagerDepackagerToolStripMenuItem = new ToolStripMenuItem();
             UnscVersionText = new Label();
             panel1 = new Panel();
             label2 = new Label();
@@ -70,7 +71,7 @@
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
-            packagerDepackagerToolStripMenuItem = new ToolStripMenuItem();
+            temporaryInstallEnvironmentToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -220,14 +221,14 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(107, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
@@ -269,7 +270,7 @@
             // 
             // uniPKGToolStripMenuItem
             // 
-            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem, packageInformationParserToolStripMenuItem, packagerDepackagerToolStripMenuItem });
+            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem, packageInformationParserToolStripMenuItem, packagerDepackagerToolStripMenuItem, temporaryInstallEnvironmentToolStripMenuItem });
             uniPKGToolStripMenuItem.Name = "uniPKGToolStripMenuItem";
             uniPKGToolStripMenuItem.Size = new Size(58, 20);
             uniPKGToolStripMenuItem.Text = "UniPKG";
@@ -277,16 +278,23 @@
             // packageVerifierToolStripMenuItem
             // 
             packageVerifierToolStripMenuItem.Name = "packageVerifierToolStripMenuItem";
-            packageVerifierToolStripMenuItem.Size = new Size(219, 22);
+            packageVerifierToolStripMenuItem.Size = new Size(235, 22);
             packageVerifierToolStripMenuItem.Text = "Package verifier";
             packageVerifierToolStripMenuItem.Click += packageVerifierToolStripMenuItem_Click;
             // 
             // packageInformationParserToolStripMenuItem
             // 
             packageInformationParserToolStripMenuItem.Name = "packageInformationParserToolStripMenuItem";
-            packageInformationParserToolStripMenuItem.Size = new Size(219, 22);
+            packageInformationParserToolStripMenuItem.Size = new Size(235, 22);
             packageInformationParserToolStripMenuItem.Text = "Package information parser";
             packageInformationParserToolStripMenuItem.Click += packageInformationParserToolStripMenuItem_Click;
+            // 
+            // packagerDepackagerToolStripMenuItem
+            // 
+            packagerDepackagerToolStripMenuItem.Name = "packagerDepackagerToolStripMenuItem";
+            packagerDepackagerToolStripMenuItem.Size = new Size(235, 22);
+            packagerDepackagerToolStripMenuItem.Text = "Packager/Depackager";
+            packagerDepackagerToolStripMenuItem.Click += packagerDepackagerToolStripMenuItem_Click;
             // 
             // UnscVersionText
             // 
@@ -432,12 +440,12 @@
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
             // 
-            // packagerDepackagerToolStripMenuItem
+            // temporaryInstallEnvironmentToolStripMenuItem
             // 
-            packagerDepackagerToolStripMenuItem.Name = "packagerDepackagerToolStripMenuItem";
-            packagerDepackagerToolStripMenuItem.Size = new Size(219, 22);
-            packagerDepackagerToolStripMenuItem.Text = "Packager/Depackager";
-            packagerDepackagerToolStripMenuItem.Click += packagerDepackagerToolStripMenuItem_Click;
+            temporaryInstallEnvironmentToolStripMenuItem.Name = "temporaryInstallEnvironmentToolStripMenuItem";
+            temporaryInstallEnvironmentToolStripMenuItem.Size = new Size(235, 22);
+            temporaryInstallEnvironmentToolStripMenuItem.Text = "Temporary install environment";
+            temporaryInstallEnvironmentToolStripMenuItem.Click += temporaryInstallEnvironmentToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -515,6 +523,7 @@
         private ToolStripMenuItem unloadDirectoryToolStripMenuItem;
         private ToolStripMenuItem packageInformationParserToolStripMenuItem;
         private ToolStripMenuItem packagerDepackagerToolStripMenuItem;
+        private ToolStripMenuItem temporaryInstallEnvironmentToolStripMenuItem;
 
         /*
             Jebac Mickiewicza
