@@ -12,7 +12,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "pre-8d";
+        public static string Version = "pre-9d";
         private DiscordRpcClient client;
 
         // whar

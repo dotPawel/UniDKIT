@@ -59,6 +59,7 @@
             packageVerifierToolStripMenuItem = new ToolStripMenuItem();
             packageInformationParserToolStripMenuItem = new ToolStripMenuItem();
             packagerDepackagerToolStripMenuItem = new ToolStripMenuItem();
+            temporaryInstallEnvironmentToolStripMenuItem = new ToolStripMenuItem();
             UnscVersionText = new Label();
             panel1 = new Panel();
             label2 = new Label();
@@ -71,7 +72,6 @@
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
-            temporaryInstallEnvironmentToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -296,6 +296,13 @@
             packagerDepackagerToolStripMenuItem.Text = "Packager/Depackager";
             packagerDepackagerToolStripMenuItem.Click += packagerDepackagerToolStripMenuItem_Click;
             // 
+            // temporaryInstallEnvironmentToolStripMenuItem
+            // 
+            temporaryInstallEnvironmentToolStripMenuItem.Name = "temporaryInstallEnvironmentToolStripMenuItem";
+            temporaryInstallEnvironmentToolStripMenuItem.Size = new Size(235, 22);
+            temporaryInstallEnvironmentToolStripMenuItem.Text = "Temporary install environment";
+            temporaryInstallEnvironmentToolStripMenuItem.Click += temporaryInstallEnvironmentToolStripMenuItem_Click;
+            // 
             // UnscVersionText
             // 
             UnscVersionText.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
@@ -344,9 +351,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(59, 9);
             label1.Name = "label1";
-            label1.Size = new Size(91, 15);
+            label1.Size = new Size(49, 15);
             label1.TabIndex = 1;
-            label1.Text = "Project Chicago";
+            label1.Text = "UniDKIT";
             // 
             // VersionText
             // 
@@ -439,13 +446,6 @@
             StatusText.Size = new Size(71, 19);
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
-            // 
-            // temporaryInstallEnvironmentToolStripMenuItem
-            // 
-            temporaryInstallEnvironmentToolStripMenuItem.Name = "temporaryInstallEnvironmentToolStripMenuItem";
-            temporaryInstallEnvironmentToolStripMenuItem.Size = new Size(235, 22);
-            temporaryInstallEnvironmentToolStripMenuItem.Text = "Temporary install environment";
-            temporaryInstallEnvironmentToolStripMenuItem.Click += temporaryInstallEnvironmentToolStripMenuItem_Click;
             // 
             // Main
             // 
