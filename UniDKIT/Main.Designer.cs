@@ -60,6 +60,7 @@
             packageInformationParserToolStripMenuItem = new ToolStripMenuItem();
             packagerDepackagerToolStripMenuItem = new ToolStripMenuItem();
             temporaryInstallEnvironmentToolStripMenuItem = new ToolStripMenuItem();
+            downloaderToolStripMenuItem = new ToolStripMenuItem();
             UnscVersionText = new Label();
             panel1 = new Panel();
             label2 = new Label();
@@ -270,7 +271,7 @@
             // 
             // uniPKGToolStripMenuItem
             // 
-            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem, packageInformationParserToolStripMenuItem, packagerDepackagerToolStripMenuItem, temporaryInstallEnvironmentToolStripMenuItem });
+            uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem, packageInformationParserToolStripMenuItem, packagerDepackagerToolStripMenuItem, temporaryInstallEnvironmentToolStripMenuItem, downloaderToolStripMenuItem });
             uniPKGToolStripMenuItem.Name = "uniPKGToolStripMenuItem";
             uniPKGToolStripMenuItem.Size = new Size(58, 20);
             uniPKGToolStripMenuItem.Text = "UniPKG";
@@ -302,6 +303,13 @@
             temporaryInstallEnvironmentToolStripMenuItem.Size = new Size(235, 22);
             temporaryInstallEnvironmentToolStripMenuItem.Text = "Temporary install environment";
             temporaryInstallEnvironmentToolStripMenuItem.Click += temporaryInstallEnvironmentToolStripMenuItem_Click;
+            // 
+            // downloaderToolStripMenuItem
+            // 
+            downloaderToolStripMenuItem.Name = "downloaderToolStripMenuItem";
+            downloaderToolStripMenuItem.Size = new Size(235, 22);
+            downloaderToolStripMenuItem.Text = "Downloader";
+            downloaderToolStripMenuItem.Click += downloaderToolStripMenuItem_Click;
             // 
             // UnscVersionText
             // 
@@ -498,7 +506,6 @@
         private Label FilePathText;
         private ToolStripMenuItem directoryToolStripMenuItem;
         private Panel FileTreePanel;
-        private TreeView FileTree;
         private ToolStripMenuItem openToolStripMenuItem1;
         private Panel StatusPanel;
         private Label StatusText;
@@ -524,6 +531,8 @@
         private ToolStripMenuItem packageInformationParserToolStripMenuItem;
         private ToolStripMenuItem packagerDepackagerToolStripMenuItem;
         private ToolStripMenuItem temporaryInstallEnvironmentToolStripMenuItem;
+        private ToolStripMenuItem downloaderToolStripMenuItem;
+        public TreeView FileTree;
 
         /*
             Jebac Mickiewicza

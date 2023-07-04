@@ -501,5 +501,11 @@ namespace UniDKIT
             var tienv = new TempInstallEnv();
             tienv.Show();
         }
+
+        private void downloaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var downloader = new Downloader();
+            downloader.Show();
+        }
     }
 }
