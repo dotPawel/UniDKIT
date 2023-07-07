@@ -208,6 +208,7 @@
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "PackageVerifier";
             Text = "Package Verifier";
             Load += PackageVerifier_Load;

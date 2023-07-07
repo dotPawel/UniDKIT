@@ -73,6 +73,7 @@
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
+            importFileToDirectoryToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -150,7 +151,7 @@
             // 
             // directoryToolStripMenuItem
             // 
-            directoryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, openInExplorerToolStripMenuItem, reloadFileTreeToolStripMenuItem, unloadDirectoryToolStripMenuItem });
+            directoryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, openInExplorerToolStripMenuItem, reloadFileTreeToolStripMenuItem, unloadDirectoryToolStripMenuItem, importFileToDirectoryToolStripMenuItem });
             directoryToolStripMenuItem.Name = "directoryToolStripMenuItem";
             directoryToolStripMenuItem.Size = new Size(67, 20);
             directoryToolStripMenuItem.Text = "Directory";
@@ -158,28 +159,28 @@
             // openToolStripMenuItem1
             // 
             openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            openToolStripMenuItem1.Size = new Size(162, 22);
+            openToolStripMenuItem1.Size = new Size(193, 22);
             openToolStripMenuItem1.Text = "Open";
             openToolStripMenuItem1.Click += openToolStripMenuItem1_Click;
             // 
             // openInExplorerToolStripMenuItem
             // 
             openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
-            openInExplorerToolStripMenuItem.Size = new Size(162, 22);
+            openInExplorerToolStripMenuItem.Size = new Size(193, 22);
             openInExplorerToolStripMenuItem.Text = "Open in explorer";
             openInExplorerToolStripMenuItem.Click += openInExplorerToolStripMenuItem_Click;
             // 
             // reloadFileTreeToolStripMenuItem
             // 
             reloadFileTreeToolStripMenuItem.Name = "reloadFileTreeToolStripMenuItem";
-            reloadFileTreeToolStripMenuItem.Size = new Size(162, 22);
+            reloadFileTreeToolStripMenuItem.Size = new Size(193, 22);
             reloadFileTreeToolStripMenuItem.Text = "Reload file tree";
             reloadFileTreeToolStripMenuItem.Click += reloadFileTreeToolStripMenuItem_Click;
             // 
             // unloadDirectoryToolStripMenuItem
             // 
             unloadDirectoryToolStripMenuItem.Name = "unloadDirectoryToolStripMenuItem";
-            unloadDirectoryToolStripMenuItem.Size = new Size(162, 22);
+            unloadDirectoryToolStripMenuItem.Size = new Size(193, 22);
             unloadDirectoryToolStripMenuItem.Text = "Unload directory";
             unloadDirectoryToolStripMenuItem.Click += unloadDirectoryToolStripMenuItem_Click;
             // 
@@ -194,7 +195,7 @@
             // 
             versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1 });
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            versionToolStripMenuItem.Size = new Size(112, 22);
+            versionToolStripMenuItem.Size = new Size(180, 22);
             versionToolStripMenuItem.Text = "Version";
             versionToolStripMenuItem.DropDownItemClicked += versionToolStripMenuItem_DropDownItemClicked;
             // 
@@ -353,6 +354,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label1
             // 
@@ -455,6 +457,13 @@
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
             // 
+            // importFileToDirectoryToolStripMenuItem
+            // 
+            importFileToDirectoryToolStripMenuItem.Name = "importFileToDirectoryToolStripMenuItem";
+            importFileToDirectoryToolStripMenuItem.Size = new Size(193, 22);
+            importFileToDirectoryToolStripMenuItem.Text = "Import file to directory";
+            importFileToDirectoryToolStripMenuItem.Click += importFileToDirectoryToolStripMenuItem_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -533,6 +542,7 @@
         private ToolStripMenuItem temporaryInstallEnvironmentToolStripMenuItem;
         private ToolStripMenuItem downloaderToolStripMenuItem;
         public TreeView FileTree;
+        private ToolStripMenuItem importFileToDirectoryToolStripMenuItem;
 
         /*
             Jebac Mickiewicza

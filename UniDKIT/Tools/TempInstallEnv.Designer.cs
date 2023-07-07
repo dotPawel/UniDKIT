@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempInstallEnv));
             panel1 = new Panel();
+            LogCheckbox = new CheckBox();
             OpenExplorerButton = new Button();
             DisposeButton = new Button();
             DisposeEnvCheckbox = new CheckBox();
@@ -37,7 +38,6 @@
             BrowseButton = new Button();
             PathTextbox = new TextBox();
             MainTextbox = new TextBox();
-            LogCheckbox = new CheckBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -56,6 +56,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(394, 420);
             panel1.TabIndex = 4;
+            // 
+            // LogCheckbox
+            // 
+            LogCheckbox.AutoSize = true;
+            LogCheckbox.Location = new Point(230, 398);
+            LogCheckbox.Name = "LogCheckbox";
+            LogCheckbox.RightToLeft = RightToLeft.Yes;
+            LogCheckbox.Size = new Size(161, 19);
+            LogCheckbox.TabIndex = 8;
+            LogCheckbox.Text = "Log to file (TempENV.log)";
+            LogCheckbox.UseVisualStyleBackColor = true;
             // 
             // OpenExplorerButton
             // 
@@ -135,17 +146,6 @@
             MainTextbox.Size = new Size(388, 331);
             MainTextbox.TabIndex = 1;
             // 
-            // LogCheckbox
-            // 
-            LogCheckbox.AutoSize = true;
-            LogCheckbox.Location = new Point(230, 398);
-            LogCheckbox.Name = "LogCheckbox";
-            LogCheckbox.RightToLeft = RightToLeft.Yes;
-            LogCheckbox.Size = new Size(161, 19);
-            LogCheckbox.TabIndex = 8;
-            LogCheckbox.Text = "Log to file (TempENV.log)";
-            LogCheckbox.UseVisualStyleBackColor = true;
-            // 
             // TempInstallEnv
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -156,6 +156,7 @@
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "TempInstallEnv";
             Text = "Temporary install environment";
             FormClosing += TempInstallEnv_FormClosing;

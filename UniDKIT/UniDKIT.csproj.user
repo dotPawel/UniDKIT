@@ -4,22 +4,25 @@
     <Compile Update="About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Downloader.cs">
+    <Compile Update="Tools\Downloader.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Packager.cs">
+    <Compile Update="Tools\Packager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="PackageVerifier.cs">
+    <Compile Update="Tools\PackageVerifier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="PkginfoParser.cs">
+    <Compile Update="Tools\PkginfoParser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="TempInstallEnv.cs">
+    <Compile Update="Tools\Placeholder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Tools\TempInstallEnv.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

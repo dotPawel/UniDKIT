@@ -104,6 +104,7 @@
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "PkginfoParser";
             Text = "Package Information Parser";
             Load += PkginfoParser_Load;
@@ -111,13 +112,6 @@
             panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
-
-            /*
-                She disappeared across the boardwalk
-                    She keeps the sunset right with movement in her eyes
-                        She knows she gets away with murder
-                            Swallows up your heart of gold, and I don't know just where we've got to go
-            */
         }
 
         #endregion

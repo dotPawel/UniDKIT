@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button1 = new Button();
             BrowseButton = new Button();
             OutputTextbox = new TextBox();
             label2 = new Label();
@@ -36,7 +37,6 @@
             InputTextbox = new TextBox();
             InfoButton = new RadioButton();
             PackageButton = new RadioButton();
-            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,6 +55,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(319, 201);
             panel1.TabIndex = 5;
+            // 
+            // button1
+            // 
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(3, 153);
+            button1.Name = "button1";
+            button1.Size = new Size(313, 48);
+            button1.TabIndex = 7;
+            button1.Text = "Pull";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // BrowseButton
             // 
@@ -134,17 +145,6 @@
             PackageButton.UseVisualStyleBackColor = true;
             PackageButton.CheckedChanged += OnUncheck;
             // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(3, 153);
-            button1.Name = "button1";
-            button1.Size = new Size(313, 48);
-            button1.TabIndex = 7;
-            button1.Text = "Pull";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // Downloader
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -154,6 +154,7 @@
             Controls.Add(panel1);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            MaximizeBox = false;
             Name = "Downloader";
             Text = "Downloader";
             Load += Downloader_Load;

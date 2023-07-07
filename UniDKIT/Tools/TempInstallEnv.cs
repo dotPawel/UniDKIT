@@ -28,7 +28,7 @@ namespace UniDKIT
         {
             MainTextbox.Text += msg + Environment.NewLine;
             MainTextbox.DeselectAll();
-            
+
             if (LogCheckbox.Checked)
             {
                 try

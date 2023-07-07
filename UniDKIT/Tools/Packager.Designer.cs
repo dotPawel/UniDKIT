@@ -163,6 +163,7 @@
             Controls.Add(panel1);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            MaximizeBox = false;
             Name = "Packager";
             Text = "Packager/Depackager";
             Load += Packager_Load;

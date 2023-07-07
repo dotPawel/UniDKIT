@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.NetworkInformation;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
@@ -12,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "pre-9d";
+        public static string Version = "pre-10d";
         private DiscordRpcClient client;
 
         // whar
@@ -33,6 +34,7 @@ namespace UniDKIT
         public static string OldFileContents;
 
         public static string UnscVersion = "6.0r";
+        public static int counter2;
         public Main()
         {
             InitializeComponent();
@@ -59,18 +61,71 @@ namespace UniDKIT
             client.Initialize();
             SetDiscordRPC();
         }
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (FilePath != null && OldFileContents != Textbox.Text)
+            {
+                StatusText.Text = "File changes detected";
+                DialogResult dialogResult = MessageBox.Show("Save changes to file?", "File changes detected", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    File.WriteAllText(FilePath, Textbox.Text);
+                    StatusText.Text = "Saved changes";
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            client.Dispose();
+        }
+        public void SetDiscordRPC()
+        {
+            string details = "";
+            string state = "";
+            if (FilePath == null)
+            {
+                details = "Idling..";
+                state = "No file loaded";
+            }
+            else
+            {
+                details = "Editing a " + Path.GetExtension(FilePath) + " file";
+                state = "File name : " + Path.GetFileName(FilePath);
+            }
+            client.ClearPresence();
+            client.SetPresence(new RichPresence()
+            {
+                Details = details,
+                State = state,
+
+                Assets = new Assets()
+                {
+                    LargeImageKey = "unidkit_icon",
+                    LargeImageText = "Not yet!",
+                    //SmallImageKey = "blah"
+                }
+            });
+        }
         public void LoadFile(string FileP)
         {
-            FilePath = FileP;
+            try
+            {
+                FilePath = FileP;
 
-            Textbox.Text = File.ReadAllText(FileP);
-            OldFileContents = File.ReadAllText(FileP);
+                Textbox.Text = File.ReadAllText(FileP);
+                OldFileContents = File.ReadAllText(FileP);
 
-            StatusText.Text = "Wrote file into Textbox";
+                StatusText.Text = "Wrote file into Textbox";
 
-            FilePathText.Text = FilePath;
+                FilePathText.Text = FilePath;
 
-            StatusText.Text = "Loaded file";
+                StatusText.Text = "Loaded file";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loading file failed\n\n Exception : " + ex.Message);
+            }
         }
         public void LoadFileTree()
         {
@@ -108,135 +163,8 @@ namespace UniDKIT
                 StatusText.Text = "Loading FileTree failed";
             }
         }
-        public void SetDiscordRPC()
-        {
-            string details = "";
-            string state = "";
-            if (FilePath == null)
-            {
-                details = "Idling..";
-                state = "No file loaded";
-            }
-            else
-            {
-                details = "Editing a " + Path.GetExtension(FilePath) + " file";
-                state = "File name : " + Path.GetFileName(FilePath);
-            }
-            client.ClearPresence();
-            client.SetPresence(new RichPresence()
-            {
-                Details = details,
-                State = state,
 
-                Assets = new Assets()
-                {
-                    LargeImageKey = "unidkit_icon",
-                    LargeImageText = "Not yet!",
-                    //SmallImageKey = "blah"
-                }
-            });
-        }
-
-        private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
-        {
-            // this is so fucked lol
-            e.ChangedRange.ClearStyle();
-
-            // filesys
-            e.ChangedRange.SetStyle(BlueStyle, @"file", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueStyle, @"dir", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueStyle, @"sd", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(YellowStyle, @"make", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"del", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"rd", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"wrt", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"cln", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"rnm", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"zip", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"unzip", RegexOptions.Multiline);
-
-            // uniscript/pkg
-            e.ChangedRange.SetStyle(PurpleStyle, @"uniscript", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(PurpleStyle, @"unipkg", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/foinfo", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/finfo", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/dpkg", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/uinst", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.Multiline);
-
-            // networx
-            e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.Multiline);
-
-            // process
-            e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(CoralStyle, @"run", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"end", RegexOptions.Multiline);
-
-            // customization and ironpython
-            if (UnscVersion == "6.0r")
-            {
-                e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"stxt", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"ptxt", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"tmdl", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.Multiline);
-
-                // 6.0r changes
-
-                //e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline); switched out for make
-                e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.Multiline);
-                //e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline); switched out for wrt
-                //e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline); switched out for wrt
-                //e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline); switched out for rd or removed entirely
-            }
-            else
-            {
-                e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"starttext", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"prompttext", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"textmodules", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.Multiline);
-
-                e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"write-template", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline);
-            }
-            e.ChangedRange.SetStyle(CoralStyle, @"open", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"example", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"parse", RegexOptions.Multiline);
-
-
-            // aerocl backbridge
-            e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.Multiline);
-
-            // misc.
-            e.ChangedRange.SetStyle(ChartStyle, @"clr", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"about", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"echo", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"sleep", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"exit", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(DarkOliveStyle, @"ptm-cmd", RegexOptions.Multiline);
-
-            // other slash commands
-            e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.Multiline);
-        }
-        private void writeHighlightingTestToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Textbox.Text = "-- Syntax testing --\r\n\r\n= FileSystem =\r\nfile\r\ndir\r\nsd\r\n= Misc. =\r\nproc\r\nironpython\r\nconfig\r\nacl_bb\r\n[ptm-cmd]\r\nnet\r\n= UniPKG/Script =\r\nuniscript\r\nunipkg\r\n= Customization =\r\nstarttext\r\nprompttext\r\ntextmodules\r\n= Controls =\r\nclr\r\nabout\r\necho\r\nsleep\r\nexit\r\n= Extensions =\r\nmake del rd wrt cln rnm zip unzip\r\nrun end ping\r\nopen write parse write-template create\r\n= Slash extensions =\r\n/inst /foinfo /dpkg /finfo /uinst /list /all\r\n";
-            StatusText.Text = "[Debug] Wrote highlighting text to textbox";
-        }
+        // file
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -326,6 +254,7 @@ namespace UniDKIT
             try
             {
                 File.WriteAllText(FilePath, Textbox.Text);
+                OldFileContents = Textbox.Text;
                 StatusText.Text = "Saved file";
             }
             catch (Exception ex)
@@ -335,6 +264,22 @@ namespace UniDKIT
             }
 
         }
+        private void closeFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FilePath == null)
+            {
+                MessageBox.Show("No file loaded");
+            }
+            else
+            {
+                Textbox.Text = "";
+                FilePath = null;
+                FilePathText.Text = "Closed file";
+                SetDiscordRPC();
+            }
+        }
+
+        // directory
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var OpenDialog = new FolderBrowserDialog();
@@ -349,6 +294,70 @@ namespace UniDKIT
                 StatusText.Text = "Opening directory aborted";
             }
         }
+        private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DirPath == null)
+            {
+                MessageBox.Show("No directory loaded");
+                return;
+            }
+
+            try
+            {
+                Process.Start("explorer.exe", DirPath);
+                StatusText.Text = "Started explorer";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Opening explorer failed\n\n Exception : " + ex.Message);
+                StatusText.Text = "Opening explorer failed";
+            }
+        }
+        private void reloadFileTreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DirPath != null)
+            {
+                LoadFileTree();
+            }
+            else
+            {
+                MessageBox.Show("No directory loaded");
+            }
+        }
+        private void unloadDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DirPath = null;
+            FileTree.Nodes.Clear();
+        }
+        private void importFileToDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DirPath == null)
+            {
+                MessageBox.Show("No directory loaded");
+                return;
+            }
+
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    File.Copy(ofd.FileName, DirPath + "\\" + Path.GetFileName(ofd.FileName));
+                    StatusText.Text = "Imported file to current directory";
+                    LoadFileTree();
+                }
+                else
+                {
+                    StatusText.Text = "Importing file aborted";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed importing file\n\n Exception : " + ex.Message);
+                return;
+            }
+        }
+
         private void FileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Parent == null)
@@ -381,86 +390,8 @@ namespace UniDKIT
                 LoadFileTree();
             }
         }
-        private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (DirPath == null)
-            {
-                MessageBox.Show("No directory loaded");
-                return;
-            }
 
-            try
-            {
-                Process.Start("explorer.exe", DirPath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Opening explorer failed\n\n Exception : " + ex.Message);
-                StatusText.Text = "Opening explorer failed";
-            }
-        }
-        private void reloadFileTreeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (DirPath != null)
-            {
-                LoadFileTree();
-            }
-            else
-            {
-                MessageBox.Show("No directory loaded");
-            }
-        }
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (FilePath != null && OldFileContents != Textbox.Text)
-            {
-                StatusText.Text = "File changes detected";
-                DialogResult dialogResult = MessageBox.Show("Save changes to file?", "File changes detected", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    File.WriteAllText(FilePath, Textbox.Text);
-                    StatusText.Text = "Saved changes";
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    return;
-                }
-            }
-            client.Dispose();
-        }
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        private void closeFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (FilePath == null)
-            {
-                MessageBox.Show("No file loaded");
-            }
-            else
-            {
-                Textbox.Text = "";
-                FilePath = null;
-                FilePathText.Text = "Closed file";
-                SetDiscordRPC();
-            }
-        }
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var about = new About();
-            about.Show();
-        }
-        private void disposeClientToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            client.Dispose();
-            StatusText.Text = "[Debug] Disposed discord client";
-        }
-        private void setClientToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetDiscordRPC();
-            StatusText.Text = "[Debug] Set DiscordRPC";
-        }
+        // uniscript
         private void versionToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             UnscVersion = e.ClickedItem.Text;
@@ -474,38 +405,161 @@ namespace UniDKIT
             }
             Textbox.OnTextChanged();
         }
+
+        // unipkg
         private void packageVerifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var PackageVerifier = new PackageVerifier();
             PackageVerifier.Show();
-        }
-        private void unloadDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DirPath = null;
-            FileTree.Nodes.Clear();
         }
         private void packageInformationParserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var PkginfoParser = new PkginfoParser();
             PkginfoParser.Show();
         }
-
         private void packagerDepackagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var Packager = new Packager();
             Packager.Show();
         }
-
         private void temporaryInstallEnvironmentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var tienv = new TempInstallEnv();
             tienv.Show();
         }
-
         private void downloaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var downloader = new Downloader();
             downloader.Show();
         }
-    }
+
+        // unidkit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var about = new About();
+            about.Show();
+        }
+
+        // super secret special debug stuff
+
+        private void writeHighlightingTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Textbox.Text = "-- Syntax testing --\r\n\r\n= FileSystem =\r\nfile\r\ndir\r\nsd\r\n= Misc. =\r\nproc\r\nironpython\r\nconfig\r\nacl_bb\r\n[ptm-cmd]\r\nnet\r\n= UniPKG/Script =\r\nuniscript\r\nunipkg\r\n= Customization =\r\nstarttext\r\nprompttext\r\ntextmodules\r\n= Controls =\r\nclr\r\nabout\r\necho\r\nsleep\r\nexit\r\n= Extensions =\r\nmake del rd wrt cln rnm zip unzip\r\nrun end ping\r\nopen write parse write-template create\r\n= Slash extensions =\r\n/inst /foinfo /dpkg /finfo /uinst /list /all\r\n";
+            StatusText.Text = "[Debug] Wrote highlighting text to textbox";
+        }
+        private void disposeClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            client.Dispose();
+            StatusText.Text = "[Debug] Disposed discord client";
+        }
+        private void setClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDiscordRPC();
+            StatusText.Text = "[Debug] Set DiscordRPC";
+        }
+
+        // misc
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            counter2 += 1;
+        }
+        private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        {
+            // this is so fucked lol
+            e.ChangedRange.ClearStyle();
+
+            // filesys
+            e.ChangedRange.SetStyle(BlueStyle, @"file", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(BlueStyle, @"dir", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(BlueStyle, @"sd", RegexOptions.Multiline);
+
+            e.ChangedRange.SetStyle(YellowStyle, @"make", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"del", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"rd", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"wrt", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"cln", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"rnm", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"zip", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"unzip", RegexOptions.Multiline);
+
+            // uniscript/pkg
+            e.ChangedRange.SetStyle(PurpleStyle, @"uniscript", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(PurpleStyle, @"unipkg", RegexOptions.Multiline);
+
+            e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/foinfo", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/finfo", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/dpkg", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/uinst", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.Multiline);
+
+            // networx
+            e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.Multiline);
+
+            e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.Multiline);
+
+            // process
+            e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.Multiline);
+
+            e.ChangedRange.SetStyle(CoralStyle, @"run", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"end", RegexOptions.Multiline);
+
+            // customization and ironpython
+            if (UnscVersion == "6.0r")
+            {
+                e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"stxt", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"ptxt", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"tmdl", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.Multiline);
+
+                // 6.0r changes
+
+                //e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline); switched out for make
+                e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.Multiline);
+                //e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline); switched out for wrt
+                //e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline); switched out for wrt
+                //e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline); switched out for rd or removed entirely
+            }
+            else
+            {
+                e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"starttext", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"prompttext", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"textmodules", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.Multiline);
+
+                e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"write-template", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline);
+            }
+            e.ChangedRange.SetStyle(CoralStyle, @"open", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"example", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"parse", RegexOptions.Multiline);
+            // God save us all
+
+            // aerocl backbridge
+            e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.Multiline);
+
+            e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.Multiline);
+
+            // misc.
+            e.ChangedRange.SetStyle(ChartStyle, @"clr", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(ChartStyle, @"about", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(ChartStyle, @"echo", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(ChartStyle, @"sleep", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(ChartStyle, @"exit", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(DarkOliveStyle, @"ptm-cmd", RegexOptions.Multiline);
+
+            // other slash commands
+            e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.Multiline);
+        }    }
 }
