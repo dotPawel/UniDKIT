@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "pre-10d";
+        public static string Version = "pre-11d";
         private DiscordRpcClient client;
 
         // whar
@@ -35,12 +35,81 @@ namespace UniDKIT
 
         public static string UnscVersion = "6.0r";
         public static int counter2;
+
+        public string[] Autocomplete54 =
+        {
+            // filesys
+            "file", "dir", "sd",
+
+            "make", "del", "rd", "wrt", "cln", "rnm", "zip", "unzip",
+
+            // uniscript/pkg
+            "uniscript", "unipkg",
+
+            "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
+            
+            // networx
+            "net", "ping",
+
+            // process
+            "proc", "run", "end",
+
+            // customization and ironpython
+            "ironpython", "starttext", "prompttext", "textmodules", "config",
+
+            "create", "write-template", "rewrite", "write", "print",
+            "open", "example", "parse",
+
+            // acl backbridge
+            "acl_bb", "start",
+
+            // misc.
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd",
+
+            // other slash commands
+            "/p", "/all", "/ptm"
+        };
+        public string[] Autocomplete60 =
+        {
+            // filesys
+            "file", "dir", "sd",
+
+            "make", "del", "rd", "wrt", "cln", "rnm", "zip", "unzip",
+
+            // uniscript/pkg
+            "uniscript", "unipkg",
+
+            "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
+            
+            // networx
+            "net", "ping",
+
+            // process
+            "proc", "run", "end",
+
+            // customization and ironpython
+            "irpy", "stxt", "ptxt", "tmdl", "cfg",
+
+            "wrt-template", "open", "example", "parse",
+
+            // acl backbridge
+            "acl_bb", "start",
+
+            // misc.
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd",
+
+            // other slash commands
+            "/p", "/all", "/ptm"
+        };
+
+
         public Main()
         {
             InitializeComponent();
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            AutocompleteMenu.Items = Autocomplete60;
             this.Text = "UniDKIT // " + Version;
 
             VersionText.Text = "Version // " + Version;
@@ -146,7 +215,7 @@ namespace UniDKIT
                     var directoryInfo = (DirectoryInfo)currentNode.Tag;
                     foreach (var directory in directoryInfo.GetDirectories())
                     {
-                        var childDirectoryNode = new TreeNode(directory.Name) { Tag = directory };
+                        var childDirectoryNode = new TreeNode(directory.Name + @"\") { Tag = directory };
                         currentNode.Nodes.Add(childDirectoryNode);
                         stack.Push(childDirectoryNode);
                     }
@@ -360,7 +429,7 @@ namespace UniDKIT
 
         private void FileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Parent == null)
+            if (e.Node.Parent == null || e.Node.Text.EndsWith(@"\"))
             {
                 return;
             }
@@ -377,7 +446,7 @@ namespace UniDKIT
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-                        return;
+
                     }
                 }
                 LoadFile(Path.GetDirectoryName(DirPath) + @"\" + e.Node.FullPath);
@@ -398,10 +467,12 @@ namespace UniDKIT
             if (e.ClickedItem.Text == "5.4r")
             {
                 UnscVersionText.Text = "5.4r";
+                AutocompleteMenu.Items = Autocomplete54;
             }
             if (e.ClickedItem.Text == "6.0r")
             {
                 UnscVersionText.Text = "6.0r";
+                AutocompleteMenu.Items = Autocomplete60;
             }
             Textbox.OnTextChanged();
         }
@@ -445,7 +516,10 @@ namespace UniDKIT
         }
 
         // super secret special debug stuff
-
+        private void clearTextboxStyleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Textbox.ClearStylesBuffer();
+        }
         private void writeHighlightingTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Textbox.Text = "-- Syntax testing --\r\n\r\n= FileSystem =\r\nfile\r\ndir\r\nsd\r\n= Misc. =\r\nproc\r\nironpython\r\nconfig\r\nacl_bb\r\n[ptm-cmd]\r\nnet\r\n= UniPKG/Script =\r\nuniscript\r\nunipkg\r\n= Customization =\r\nstarttext\r\nprompttext\r\ntextmodules\r\n= Controls =\r\nclr\r\nabout\r\necho\r\nsleep\r\nexit\r\n= Extensions =\r\nmake del rd wrt cln rnm zip unzip\r\nrun end ping\r\nopen write parse write-template create\r\n= Slash extensions =\r\n/inst /foinfo /dpkg /finfo /uinst /list /all\r\n";
@@ -470,7 +544,7 @@ namespace UniDKIT
         private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
             // this is so fucked lol
-            e.ChangedRange.ClearStyle();
+            Textbox.ClearStylesBuffer();
 
             // filesys
             e.ChangedRange.SetStyle(BlueStyle, @"file", RegexOptions.Multiline);
@@ -561,5 +635,6 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.Multiline);
             e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.Multiline);
             e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.Multiline);
-        }    }
+        }
+    }
 }

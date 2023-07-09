@@ -28,7 +28,7 @@ namespace UniDKIT
         {
             counter1 += 1;
 
-            if (counter1 > 53 && Main.counter2 > 37) 
+            if (counter1 > 53 && Main.counter2 > 37)
             {
                 counter1 = -4354564;
                 Main.counter2 = -345564567;

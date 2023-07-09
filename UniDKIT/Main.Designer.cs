@@ -43,6 +43,7 @@
             openInExplorerToolStripMenuItem = new ToolStripMenuItem();
             reloadFileTreeToolStripMenuItem = new ToolStripMenuItem();
             unloadDirectoryToolStripMenuItem = new ToolStripMenuItem();
+            importFileToDirectoryToolStripMenuItem = new ToolStripMenuItem();
             uniScriptToolStripMenuItem = new ToolStripMenuItem();
             versionToolStripMenuItem = new ToolStripMenuItem();
             rToolStripMenuItem = new ToolStripMenuItem();
@@ -67,21 +68,23 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             VersionText = new Label();
-            panel2 = new Panel();
             Textbox = new FastColoredTextBoxNS.FastColoredTextBox();
-            FileTreePanel = new Panel();
             FileTree = new TreeView();
             StatusPanel = new Panel();
             StatusText = new Label();
-            importFileToDirectoryToolStripMenuItem = new ToolStripMenuItem();
+            MainContainer = new SplitContainer();
+            AutocompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
+            clearTextboxStyleToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Textbox).BeginInit();
-            FileTreePanel.SuspendLayout();
             StatusPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MainContainer).BeginInit();
+            MainContainer.Panel1.SuspendLayout();
+            MainContainer.Panel2.SuspendLayout();
+            MainContainer.SuspendLayout();
             SuspendLayout();
             // 
             // TopPanel
@@ -184,6 +187,13 @@
             unloadDirectoryToolStripMenuItem.Text = "Unload directory";
             unloadDirectoryToolStripMenuItem.Click += unloadDirectoryToolStripMenuItem_Click;
             // 
+            // importFileToDirectoryToolStripMenuItem
+            // 
+            importFileToDirectoryToolStripMenuItem.Name = "importFileToDirectoryToolStripMenuItem";
+            importFileToDirectoryToolStripMenuItem.Size = new Size(193, 22);
+            importFileToDirectoryToolStripMenuItem.Text = "Import file to directory";
+            importFileToDirectoryToolStripMenuItem.Click += importFileToDirectoryToolStripMenuItem_Click;
+            // 
             // uniScriptToolStripMenuItem
             // 
             uniScriptToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { versionToolStripMenuItem });
@@ -195,7 +205,7 @@
             // 
             versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1 });
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            versionToolStripMenuItem.Size = new Size(180, 22);
+            versionToolStripMenuItem.Size = new Size(112, 22);
             versionToolStripMenuItem.Text = "Version";
             versionToolStripMenuItem.DropDownItemClicked += versionToolStripMenuItem_DropDownItemClicked;
             // 
@@ -237,7 +247,7 @@
             // testingToolStripMenuItem
             // 
             testingToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
-            testingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { writeHighlightingTestToolStripMenuItem, discordRPCToolStripMenuItem });
+            testingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { writeHighlightingTestToolStripMenuItem, discordRPCToolStripMenuItem, clearTextboxStyleToolStripMenuItem });
             testingToolStripMenuItem.Name = "testingToolStripMenuItem";
             testingToolStripMenuItem.Size = new Size(62, 20);
             testingToolStripMenuItem.Text = "[Debug]";
@@ -374,21 +384,12 @@
             VersionText.TabIndex = 0;
             VersionText.Text = "VersionText";
             // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.FromArgb(68, 68, 68);
-            panel2.Controls.Add(Textbox);
-            panel2.Location = new Point(183, 75);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(901, 529);
-            panel2.TabIndex = 2;
-            // 
             // Textbox
             // 
             Textbox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Textbox.AutoCompleteBrackets = true;
             Textbox.AutoCompleteBracketsList = (new char[] { '(', ')', '{', '}', '[', ']', '"', '"', '\'', '\'' });
+            AutocompleteMenu.SetAutocompleteMenu(Textbox, AutocompleteMenu);
             Textbox.AutoScrollMinSize = new Size(27, 15);
             Textbox.BackBrush = null;
             Textbox.BackColor = Color.FromArgb(40, 40, 40);
@@ -405,25 +406,14 @@
             Textbox.Paddings = new Padding(0);
             Textbox.SelectionColor = Color.FromArgb(80, 0, 0, 255);
             Textbox.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("Textbox.ServiceColors");
-            Textbox.Size = new Size(895, 523);
+            Textbox.Size = new Size(896, 526);
             Textbox.TabIndex = 0;
             Textbox.Zoom = 100;
             Textbox.TextChanged += Textbox_TextChanged;
             // 
-            // FileTreePanel
-            // 
-            FileTreePanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            FileTreePanel.BackColor = Color.FromArgb(68, 68, 68);
-            FileTreePanel.Controls.Add(FileTree);
-            FileTreePanel.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            FileTreePanel.Location = new Point(12, 75);
-            FileTreePanel.Name = "FileTreePanel";
-            FileTreePanel.Size = new Size(165, 529);
-            FileTreePanel.TabIndex = 3;
-            // 
             // FileTree
             // 
-            FileTree.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            FileTree.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             FileTree.BackColor = Color.FromArgb(40, 40, 40);
             FileTree.BorderStyle = BorderStyle.FixedSingle;
             FileTree.ForeColor = Color.White;
@@ -431,7 +421,7 @@
             FileTree.ItemHeight = 19;
             FileTree.Location = new Point(3, 3);
             FileTree.Name = "FileTree";
-            FileTree.Size = new Size(159, 523);
+            FileTree.Size = new Size(160, 526);
             FileTree.TabIndex = 0;
             FileTree.NodeMouseDoubleClick += FileTree_NodeMouseDoubleClick;
             // 
@@ -457,12 +447,42 @@
             StatusText.TabIndex = 0;
             StatusText.Text = "StatusText";
             // 
-            // importFileToDirectoryToolStripMenuItem
+            // MainContainer
             // 
-            importFileToDirectoryToolStripMenuItem.Name = "importFileToDirectoryToolStripMenuItem";
-            importFileToDirectoryToolStripMenuItem.Size = new Size(193, 22);
-            importFileToDirectoryToolStripMenuItem.Text = "Import file to directory";
-            importFileToDirectoryToolStripMenuItem.Click += importFileToDirectoryToolStripMenuItem_Click;
+            MainContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            MainContainer.Location = new Point(12, 72);
+            MainContainer.Name = "MainContainer";
+            // 
+            // MainContainer.Panel1
+            // 
+            MainContainer.Panel1.BackColor = Color.FromArgb(68, 68, 68);
+            MainContainer.Panel1.Controls.Add(FileTree);
+            // 
+            // MainContainer.Panel2
+            // 
+            MainContainer.Panel2.BackColor = Color.FromArgb(68, 68, 68);
+            MainContainer.Panel2.Controls.Add(Textbox);
+            MainContainer.Size = new Size(1072, 532);
+            MainContainer.SplitterDistance = 166;
+            MainContainer.TabIndex = 0;
+            // 
+            // AutocompleteMenu
+            // 
+            AutocompleteMenu.AllowsTabKey = true;
+            AutocompleteMenu.AppearInterval = 1;
+            AutocompleteMenu.Colors = (AutocompleteMenuNS.Colors)resources.GetObject("AutocompleteMenu.Colors");
+            AutocompleteMenu.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AutocompleteMenu.ImageList = null;
+            AutocompleteMenu.Items = (new string[] { "make" });
+            AutocompleteMenu.MinFragmentLength = 1;
+            AutocompleteMenu.TargetControlWrapper = null;
+            // 
+            // clearTextboxStyleToolStripMenuItem
+            // 
+            clearTextboxStyleToolStripMenuItem.Name = "clearTextboxStyleToolStripMenuItem";
+            clearTextboxStyleToolStripMenuItem.Size = new Size(192, 22);
+            clearTextboxStyleToolStripMenuItem.Text = "Clear textbox style";
+            clearTextboxStyleToolStripMenuItem.Click += clearTextboxStyleToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -470,9 +490,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(55, 55, 55);
             ClientSize = new Size(1096, 641);
+            Controls.Add(MainContainer);
             Controls.Add(StatusPanel);
-            Controls.Add(FileTreePanel);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(TopPanel);
             ForeColor = SystemColors.Control;
@@ -489,11 +508,13 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Textbox).EndInit();
-            FileTreePanel.ResumeLayout(false);
             StatusPanel.ResumeLayout(false);
             StatusPanel.PerformLayout();
+            MainContainer.Panel1.ResumeLayout(false);
+            MainContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MainContainer).EndInit();
+            MainContainer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -508,13 +529,11 @@
         private ToolStripMenuItem saveToolStripMenuItem;
         private Label VersionText;
         private Label label1;
-        private Panel panel2;
         private FastColoredTextBoxNS.FastColoredTextBox Textbox;
         private ToolStripMenuItem testingToolStripMenuItem;
         private ToolStripMenuItem writeHighlightingTestToolStripMenuItem;
         private Label FilePathText;
         private ToolStripMenuItem directoryToolStripMenuItem;
-        private Panel FileTreePanel;
         private ToolStripMenuItem openToolStripMenuItem1;
         private Panel StatusPanel;
         private Label StatusText;
@@ -543,6 +562,9 @@
         private ToolStripMenuItem downloaderToolStripMenuItem;
         public TreeView FileTree;
         private ToolStripMenuItem importFileToDirectoryToolStripMenuItem;
+        private SplitContainer MainContainer;
+        private AutocompleteMenuNS.AutocompleteMenu AutocompleteMenu;
+        private ToolStripMenuItem clearTextboxStyleToolStripMenuItem;
 
         /*
             Jebac Mickiewicza
