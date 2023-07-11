@@ -96,12 +96,11 @@ namespace UniDKIT
             "acl_bb", "start",
 
             // misc.
-            "clr", "about", "echo", "sleep", "exit", "ptm-cmd",
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help",
 
             // other slash commands
             "/p", "/all", "/ptm"
         };
-
 
         public Main()
         {
@@ -519,6 +518,7 @@ namespace UniDKIT
         private void clearTextboxStyleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Textbox.ClearStylesBuffer();
+            StatusText.Text = "[Debug] Cleared style buffer";
         }
         private void writeHighlightingTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
