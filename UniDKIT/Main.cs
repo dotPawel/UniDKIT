@@ -543,28 +543,15 @@ namespace UniDKIT
         }
         private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-            // this is so fucked lol
-            Textbox.ClearStylesBuffer();
-
+            // this is slightly less fucked
+            e.ChangedRange.ClearStyle(BlueStyle, AzureStyle, YellowStyle, PurpleStyle, BlueVioletStyle, DarkOliveStyle, TealStyle, ChartStyle, GreenStyle, CoralStyle);
             // filesys
-            e.ChangedRange.SetStyle(BlueStyle, @"file", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueStyle, @"dir", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(BlueStyle, @"sd", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(YellowStyle, @"make", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"del", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"rd", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"wrt", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"cln", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"rnm", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"zip", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"unzip", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(BlueStyle, @"\b(file|dir|sd)", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(YellowStyle, @"\b(make|del|rd|wrt|cln|rnm|zip|unzip)", RegexOptions.Multiline);
 
             // uniscript/pkg
-            e.ChangedRange.SetStyle(PurpleStyle, @"uniscript", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(PurpleStyle, @"unipkg", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(PurpleStyle, @"\b(uniscript|unipkg)", RegexOptions.Multiline);
+            // idk man it just kinda needs 2 be like that
             e.ChangedRange.SetStyle(GreenStyle, @"/foinfo", RegexOptions.Multiline);
             e.ChangedRange.SetStyle(GreenStyle, @"/finfo", RegexOptions.Multiline);
             e.ChangedRange.SetStyle(GreenStyle, @"/dpkg", RegexOptions.Multiline);
@@ -573,22 +560,17 @@ namespace UniDKIT
 
             // networx
             e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.Multiline);
-
             e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.Multiline);
 
             // process
             e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.Multiline);
-
-            e.ChangedRange.SetStyle(CoralStyle, @"run", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"end", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"\b(run|end)", RegexOptions.Multiline);
 
             // customization and ironpython
             if (UnscVersion == "6.0r")
             {
                 e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"stxt", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"ptxt", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"tmdl", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(stxt|ptxt|tmdl)", RegexOptions.Multiline);
                 e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.Multiline);
 
                 // 6.0r changes
@@ -602,34 +584,20 @@ namespace UniDKIT
             else
             {
                 e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"starttext", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"prompttext", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"textmodules", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(starttext|prompttext|textmodules)", RegexOptions.Multiline);
                 e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.Multiline);
 
-                e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"write-template", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"\b(create|write-template|rewrite|write|print)", RegexOptions.Multiline);
             }
-            e.ChangedRange.SetStyle(CoralStyle, @"open", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"example", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"parse", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"\b(open|example|parse)", RegexOptions.Multiline);
             // God save us all
 
             // aerocl backbridge
             e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.Multiline);
-
             e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.Multiline);
 
             // misc.
-            e.ChangedRange.SetStyle(ChartStyle, @"clr", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"about", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"echo", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"sleep", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(ChartStyle, @"exit", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(DarkOliveStyle, @"ptm-cmd", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(ChartStyle, @"\b(clr|about|echo|sleep|exit|ptm-cmd)", RegexOptions.Multiline);
 
             // other slash commands
             e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.Multiline);
