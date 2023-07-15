@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "pre-11d";
+        public static string Version = "pre-12d";
         private DiscordRpcClient client;
 
         // whar
@@ -265,11 +265,11 @@ namespace UniDKIT
                             }
                         }
                         FilePathText.Text = FilePath;
-                        if (DirPath != null)
-                        {
-                            LoadFileTree();
-                        }
                         LoadFile(FilePath);
+                    }
+                    if (DirPath != null)
+                    {
+                        LoadFileTree();
                     }
                     SetDiscordRPC();
                 }
