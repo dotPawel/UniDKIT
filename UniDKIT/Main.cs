@@ -250,9 +250,8 @@ namespace UniDKIT
                     {
                         myStream.Close();
                         File.Create(NewDialog.FileName).Close();
-                        FilePath = NewDialog.FileName;
-
-                        if (Textbox.Text.Length > 1)
+                        
+                        if (Textbox.Text.Length > 1 && FilePath == null)
                         {
                             DialogResult dialogResult = MessageBox.Show("Save current editor contents to created file?", "Editor contents detected", MessageBoxButtons.YesNo);
                             if (dialogResult == DialogResult.Yes)
@@ -264,6 +263,7 @@ namespace UniDKIT
                                 return;
                             }
                         }
+                        FilePath = NewDialog.FileName;
                         FilePathText.Text = FilePath;
                         LoadFile(FilePath);
                     }
