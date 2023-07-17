@@ -170,7 +170,7 @@ namespace UniDKIT
                 Assets = new Assets()
                 {
                     LargeImageKey = "unidkit_icon",
-                    LargeImageText = "Not yet!",
+                    LargeImageText = "https://github.com/dotPawel/UniDKIT",
                     //SmallImageKey = "blah"
                 }
             });
