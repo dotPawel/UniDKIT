@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Downloader));
             panel1 = new Panel();
             button1 = new Button();
             BrowseButton = new Button();
@@ -154,6 +155,7 @@
             Controls.Add(panel1);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Downloader";
             Text = "Downloader";

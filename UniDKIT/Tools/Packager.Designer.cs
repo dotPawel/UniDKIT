@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Packager));
             panel1 = new Panel();
             StartButton = new Button();
             label2 = new Label();
@@ -163,6 +164,7 @@
             Controls.Add(panel1);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Packager";
             Text = "Packager/Depackager";
