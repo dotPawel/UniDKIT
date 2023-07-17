@@ -546,63 +546,64 @@ namespace UniDKIT
             // this is slightly less fucked
             e.ChangedRange.ClearStyle(BlueStyle, AzureStyle, YellowStyle, PurpleStyle, BlueVioletStyle, DarkOliveStyle, TealStyle, ChartStyle, GreenStyle, CoralStyle);
             // filesys
-            e.ChangedRange.SetStyle(BlueStyle, @"\b(file|dir|sd)", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(YellowStyle, @"\b(make|del|rd|wrt|cln|rnm|zip|unzip)", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(BlueStyle, @"\b(file|dir|sd)", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(YellowStyle, @"\b(make|del|rd|wrt|cln|rnm|lst|zip|unzip)", RegexOptions.IgnoreCase);
 
             // uniscript/pkg
-            e.ChangedRange.SetStyle(PurpleStyle, @"\b(uniscript|unipkg)", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(PurpleStyle, @"\b(uniscript|unipkg)", RegexOptions.IgnoreCase);
             // idk man it just kinda needs 2 be like that
-            e.ChangedRange.SetStyle(GreenStyle, @"/foinfo", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/finfo", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/dpkg", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/uinst", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/foinfo", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/finfo", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/dpkg", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/uinst", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.IgnoreCase);
 
             // networx
-            e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.IgnoreCase);
 
             // process
-            e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"\b(run|end)", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(CoralStyle, @"\b(run|end)", RegexOptions.IgnoreCase);
 
             // customization and ironpython
             if (UnscVersion == "6.0r")
             {
-                e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(stxt|ptxt|tmdl)", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(stxt|ptxt|tmdl)", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.IgnoreCase);
 
                 // 6.0r changes
 
                 //e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline); switched out for make
-                e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.IgnoreCase);
                 //e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline); switched out for wrt
                 //e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline); switched out for wrt
                 //e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline); switched out for rd or removed entirely
             }
             else
             {
-                e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(starttext|prompttext|textmodules)", RegexOptions.Multiline);
-                e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(starttext|prompttext|textmodules)", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.IgnoreCase);
 
-                e.ChangedRange.SetStyle(CoralStyle, @"\b(create|write-template|rewrite|write|print)", RegexOptions.Multiline);
+                e.ChangedRange.SetStyle(CoralStyle, @"\b(create|write-template|rewrite|write|print)", RegexOptions.IgnoreCase);
             }
-            e.ChangedRange.SetStyle(CoralStyle, @"\b(open|example|parse)", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(CoralStyle, @"\b(open|example|parse)", RegexOptions.IgnoreCase);
             // God save us all
 
             // aerocl backbridge
-            e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.IgnoreCase);
 
             // misc.
-            e.ChangedRange.SetStyle(ChartStyle, @"\b(clr|about|echo|sleep|exit|ptm-cmd)", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(ChartStyle, @"\b(help|clr|about|echo|sleep|exit|ptm-cmd)", RegexOptions.IgnoreCase);
 
             // other slash commands
-            e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.Multiline);
-            e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.IgnoreCase);
         }
     }
 }
