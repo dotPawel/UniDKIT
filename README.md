@@ -21,7 +21,7 @@ UniDKIT comes with a set of tools for UniPKG development
 + Temporary Install Environment (TempENV)
 + Downloader (pkginfo/package images)
 
-![upkgtools2](https://github.com/dotPawel/UniDKIT/assets/89011403/c0e7a608-e246-4b47-b4ac-03b2f0f28ca5)
+![upkgtools2](https://github.com/dotPawel/UniDKIT/assets/89011403/4e948328-d772-4000-91a1-be6db4e47c8c)
 
 # ![version switching](https://github.com/dotPawel/UniDKIT/assets/89011403/0738e2f6-554f-4a14-9de9-9a4b1decdea8)
 UniDKIT supports switching between UniScript versions (for autocomplete and syntax highlighting)  
