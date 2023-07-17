@@ -1,4 +1,4 @@
-# ![unidkit banner](https://github.com/dotPawel/UniDKIT/assets/89011403/deeae35e-96f5-47a7-85cb-46b9bb6a8ba0)
+# ![banner](https://github.com/dotPawel/UniDKIT/assets/89011403/0757ee14-1ac5-4402-9620-72fbc5bdd378)
 
 UniDKIT is the offical development kit and UniScript editor for [UniversalCMD](https://github.com/dotPawel/UniversalCMD/tree/main).  
 Complete with UniScript syntax highlighting, autocomplete and a set of UniPKG tools
@@ -10,10 +10,11 @@ Complete with UniScript syntax highlighting, autocomplete and a set of UniPKG to
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 <p align="center">
-  <img src="https://github.com/dotPawel/UniDKIT/assets/89011403/c80b7415-f32f-4d8f-ba07-b2497fcca5b2" />
+  <img src="https://github.com/dotPawel/UniDKIT/assets/89011403/255b5a06-ab9a-44fd-8b93-9a12a5fe365e" />
 </p>
 
-# ![upkgtools](https://github.com/dotPawel/UniDKIT/assets/89011403/23a23949-502f-4015-8458-c883372f1789)
+
+# ![tools_banner](https://github.com/dotPawel/UniDKIT/assets/89011403/9a050315-d111-4deb-ac05-7824f91c6595)
 UniDKIT comes with a set of tools for UniPKG development
 + Package verifier
 + Package information parser
@@ -21,7 +22,6 @@ UniDKIT comes with a set of tools for UniPKG development
 + Temporary Install Environment (TempENV)
 + Downloader (pkginfo/package images)
 
-![upkgtools2](https://github.com/dotPawel/UniDKIT/assets/89011403/4e948328-d772-4000-91a1-be6db4e47c8c)
 
 # ![version switching](https://github.com/dotPawel/UniDKIT/assets/89011403/0738e2f6-554f-4a14-9de9-9a4b1decdea8)
 UniDKIT supports switching between UniScript versions (for autocomplete and syntax highlighting)  
