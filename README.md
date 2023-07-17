@@ -1,8 +1,8 @@
 # ![banner](https://github.com/dotPawel/UniDKIT/assets/89011403/0757ee14-1ac5-4402-9620-72fbc5bdd378)
 
 UniDKIT is the offical development kit and UniScript editor for [UniversalCMD](https://github.com/dotPawel/UniversalCMD/tree/main).  
-Complete with UniScript syntax highlighting, autocomplete and a set of UniPKG tools  
-Made using WinForms and FastColoredTextbox
+Complete with UniScript syntax highlighting, autocomplete and a set of UniPKG tools.  
+Made using WinForms and FastColoredTextbox.
 
 *.NET 6.0 required to run*
 
