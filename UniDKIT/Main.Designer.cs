@@ -56,6 +56,7 @@
             discordRPCToolStripMenuItem = new ToolStripMenuItem();
             disposeClientToolStripMenuItem = new ToolStripMenuItem();
             setClientToolStripMenuItem = new ToolStripMenuItem();
+            clearTextboxStyleToolStripMenuItem = new ToolStripMenuItem();
             uniPKGToolStripMenuItem = new ToolStripMenuItem();
             packageVerifierToolStripMenuItem = new ToolStripMenuItem();
             packageInformationParserToolStripMenuItem = new ToolStripMenuItem();
@@ -64,7 +65,6 @@
             downloaderToolStripMenuItem = new ToolStripMenuItem();
             UnscVersionText = new Label();
             panel1 = new Panel();
-            label2 = new Label();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             VersionText = new Label();
@@ -74,7 +74,6 @@
             StatusText = new Label();
             MainContainer = new SplitContainer();
             AutocompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
-            clearTextboxStyleToolStripMenuItem = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -280,6 +279,13 @@
             setClientToolStripMenuItem.Text = "Set client";
             setClientToolStripMenuItem.Click += setClientToolStripMenuItem_Click;
             // 
+            // clearTextboxStyleToolStripMenuItem
+            // 
+            clearTextboxStyleToolStripMenuItem.Name = "clearTextboxStyleToolStripMenuItem";
+            clearTextboxStyleToolStripMenuItem.Size = new Size(192, 22);
+            clearTextboxStyleToolStripMenuItem.Text = "Clear textbox style";
+            clearTextboxStyleToolStripMenuItem.Click += clearTextboxStyleToolStripMenuItem_Click;
+            // 
             // uniPKGToolStripMenuItem
             // 
             uniPKGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { packageVerifierToolStripMenuItem, packageInformationParserToolStripMenuItem, packagerDepackagerToolStripMenuItem, temporaryInstallEnvironmentToolStripMenuItem, downloaderToolStripMenuItem });
@@ -336,7 +342,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(68, 68, 68);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(VersionText);
@@ -344,15 +349,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(165, 60);
             panel1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(75, 39);
-            label2.Name = "label2";
-            label2.Size = new Size(73, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Pawełcorp©";
             // 
             // pictureBox1
             // 
@@ -369,16 +365,17 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(59, 9);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
+            label1.Size = new Size(59, 17);
             label1.TabIndex = 1;
             label1.Text = "UniDKIT";
             // 
             // VersionText
             // 
             VersionText.AutoSize = true;
-            VersionText.Location = new Point(65, 24);
+            VersionText.Location = new Point(62, 27);
             VersionText.Name = "VersionText";
             VersionText.Size = new Size(66, 15);
             VersionText.TabIndex = 0;
@@ -477,13 +474,6 @@
             AutocompleteMenu.MinFragmentLength = 1;
             AutocompleteMenu.TargetControlWrapper = null;
             // 
-            // clearTextboxStyleToolStripMenuItem
-            // 
-            clearTextboxStyleToolStripMenuItem.Name = "clearTextboxStyleToolStripMenuItem";
-            clearTextboxStyleToolStripMenuItem.Size = new Size(192, 22);
-            clearTextboxStyleToolStripMenuItem.Text = "Clear textbox style";
-            clearTextboxStyleToolStripMenuItem.Click += clearTextboxStyleToolStripMenuItem_Click;
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -553,7 +543,6 @@
         private Label UnscVersionText;
         private ToolStripMenuItem rToolStripMenuItem1;
         private PictureBox pictureBox1;
-        private Label label2;
         private ToolStripMenuItem packageVerifierToolStripMenuItem;
         private ToolStripMenuItem unloadDirectoryToolStripMenuItem;
         private ToolStripMenuItem packageInformationParserToolStripMenuItem;
@@ -567,7 +556,22 @@
         private ToolStripMenuItem clearTextboxStyleToolStripMenuItem;
 
         /*
-            Jebac Mickiewicza
+            lkhvoiygulvhkljkblkjhjklbkjlbk gjhvfg
+        Hf
+        gh
+        fghghjhgbv y hyujk vhb
+        ujik
+        uhji
+        k buhyib
+         uhiyhuiubhyniol jkioklj ib uhyrfctgvhjk
+        gvyh
+        yv jubnkilo;p'iuhgyhjkl;gh
+        rfytgutyugyhuihgjighjijhkhlkjl
+        jklhjklhjkhljkohu8io9gy8g8iby7
+
+        hgjghj
+
+        goop
         */
     }
 }
