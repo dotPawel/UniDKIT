@@ -83,9 +83,9 @@
             label3.Font = new Font("Segoe UI", 8.15F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(118, 58);
             label3.Name = "label3";
-            label3.Size = new Size(222, 13);
+            label3.Size = new Size(225, 13);
             label3.TabIndex = 4;
-            label3.Text = "The offical UniversalCMD development kit\r\n";
+            label3.Text = "The officall UniversalCMD development kit\r\n";
             // 
             // label4
             // 
