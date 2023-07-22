@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "1.0r";
+        public static string Version = "1.1r";
         private DiscordRpcClient client;
 
         // whar
@@ -99,7 +99,7 @@ namespace UniDKIT
             "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help",
 
             // other slash commands
-            "/p", "/all", "/ptm"
+            "/p", "/all", "/ptm", "/name", "/frc"
         };
 
         public Main()
@@ -604,6 +604,8 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/frc", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(GreenStyle, @"/name", RegexOptions.IgnoreCase);
         }
     }
 }
