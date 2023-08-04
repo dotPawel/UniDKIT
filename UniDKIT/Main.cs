@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "1.1r";
+        public static string Version = "1.2r";
         private DiscordRpcClient client;
 
         // whar
@@ -33,7 +33,7 @@ namespace UniDKIT
 
         public static string OldFileContents;
 
-        public static string UnscVersion = "6.0r";
+        public static string UnscVersion = "7.0r";
         public static int counter2;
 
         public string[] Autocomplete54 =
@@ -82,7 +82,7 @@ namespace UniDKIT
             "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
             
             // networx
-            "net", "ping",
+            "net", "ping", 
 
             // process
             "proc", "run", "end",
@@ -99,7 +99,39 @@ namespace UniDKIT
             "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help",
 
             // other slash commands
-            "/p", "/all", "/ptm", "/name", "/frc"
+            "/p", "/all", "/ptm", "/name", "/frc", "/args"
+        };
+        public string[] Autocomplete70 =
+        {
+            // filesys
+            "file", "dir", "sd",
+
+            "make", "del", "rd", "wrt", "cln", "rnm", "zip", "unzip",
+
+            // uniscript/pkg
+            "uniscript", "unipkg",
+
+            "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
+            
+            // networx
+            "net", "ping", "dload", "fc",
+
+            // process
+            "proc", "run", "end",
+
+            // customization and ironpython
+            "irpy", "stxt", "ptxt", "tmdl", "cfg",
+
+            "wrt-template", "open", "example", "parse",
+
+            // acl backbridge
+            "acl_bb", "start",
+
+            // misc.
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help",
+
+            // other slash commands
+            "/p", "/all", "/ptm", "/name", "/frc", "/args"
         };
 
         public Main()
@@ -108,7 +140,7 @@ namespace UniDKIT
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            AutocompleteMenu.Items = Autocomplete60;
+            AutocompleteMenu.Items = Autocomplete70;
             this.Text = "UniDKIT // " + Version;
 
             VersionText.Text = "Version // " + Version;
@@ -250,7 +282,7 @@ namespace UniDKIT
                     {
                         myStream.Close();
                         File.Create(NewDialog.FileName).Close();
-                        
+
                         if (Textbox.Text.Length > 1 && FilePath == null)
                         {
                             DialogResult dialogResult = MessageBox.Show("Save current editor contents to created file?", "Editor contents detected", MessageBoxButtons.YesNo);
@@ -473,6 +505,11 @@ namespace UniDKIT
                 UnscVersionText.Text = "6.0r";
                 AutocompleteMenu.Items = Autocomplete60;
             }
+            if (e.ClickedItem.Text == "7.0r")
+            {
+                UnscVersionText.Text = "7.0r";
+                AutocompleteMenu.Items = Autocomplete70;
+            }
             Textbox.OnTextChanged();
         }
 
@@ -543,7 +580,11 @@ namespace UniDKIT
         }
         private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-            // this is slightly less fucked
+            // This is still so fucked
+            // Christ how did it even get this bad
+
+            // I'm not fixing this until I cannot add more to it
+
             e.ChangedRange.ClearStyle(BlueStyle, AzureStyle, YellowStyle, PurpleStyle, BlueVioletStyle, DarkOliveStyle, TealStyle, ChartStyle, GreenStyle, CoralStyle);
             // filesys
             e.ChangedRange.SetStyle(BlueStyle, @"\b(file|dir|sd)", RegexOptions.IgnoreCase);
@@ -562,6 +603,10 @@ namespace UniDKIT
             // networx
             e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.IgnoreCase);
+            if (UnscVersion == "7.0r")
+            {
+                e.ChangedRange.SetStyle(CoralStyle, @"\b(dload|fc)", RegexOptions.IgnoreCase);
+            }
 
             // process
             e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.IgnoreCase);
@@ -574,13 +619,7 @@ namespace UniDKIT
                 e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(stxt|ptxt|tmdl)", RegexOptions.IgnoreCase);
                 e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.IgnoreCase);
 
-                // 6.0r changes
-
-                //e.ChangedRange.SetStyle(CoralStyle, @"create", RegexOptions.Multiline); switched out for make
                 e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.IgnoreCase);
-                //e.ChangedRange.SetStyle(CoralStyle, @"rewrite", RegexOptions.Multiline); switched out for wrt
-                //e.ChangedRange.SetStyle(CoralStyle, @"write", RegexOptions.Multiline); switched out for wrt
-                //e.ChangedRange.SetStyle(CoralStyle, @"print", RegexOptions.Multiline); switched out for rd or removed entirely
             }
             else
             {
@@ -604,8 +643,13 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/frc", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/name", RegexOptions.IgnoreCase);
+
+            if (UnscVersion == "6.0r" || UnscVersion == "7.0r")
+            {
+                e.ChangedRange.SetStyle(GreenStyle, @"/frc", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(GreenStyle, @"/name", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(GreenStyle, @"/args", RegexOptions.IgnoreCase);
+            }
         }
     }
 }
