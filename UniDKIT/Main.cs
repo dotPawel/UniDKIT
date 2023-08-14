@@ -64,7 +64,7 @@ namespace UniDKIT
             "acl_bb", "start",
 
             // misc.
-            "clr", "about", "echo", "sleep", "exit", "ptm-cmd",
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "pause",
 
             // other slash commands
             "/p", "/all", "/ptm"
@@ -96,7 +96,7 @@ namespace UniDKIT
             "acl_bb", "start",
 
             // misc.
-            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help",
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "pause",
 
             // other slash commands
             "/p", "/all", "/ptm", "/name", "/frc", "/args"
@@ -128,7 +128,7 @@ namespace UniDKIT
             "acl_bb", "start",
 
             // misc.
-            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help",
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "oause",
 
             // other slash commands
             "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in"
@@ -637,7 +637,7 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.IgnoreCase);
 
             // misc.
-            e.ChangedRange.SetStyle(ChartStyle, @"\b(help|clr|about|echo|sleep|exit|ptm-cmd)", RegexOptions.IgnoreCase);
+            e.ChangedRange.SetStyle(ChartStyle, @"\b(help|clr|about|echo|sleep|exit|ptm-cmd|pause)", RegexOptions.IgnoreCase);
 
             // other slash commands
             e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.IgnoreCase);
