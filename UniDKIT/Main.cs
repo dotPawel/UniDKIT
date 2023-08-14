@@ -128,7 +128,7 @@ namespace UniDKIT
             "acl_bb", "start",
 
             // misc.
-            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "oause",
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "pause",
 
             // other slash commands
             "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in"
