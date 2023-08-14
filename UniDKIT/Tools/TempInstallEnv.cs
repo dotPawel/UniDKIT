@@ -81,26 +81,31 @@ namespace UniDKIT
                     Directory.CreateDirectory("TempENV");
                     Print("[CR] TempENV");
                 }
+
                 if (!Directory.Exists("TempENV\\UniCMD.data"))
                 {
                     Directory.CreateDirectory("TempENV\\UniCMD.data");
                     Print("[CR] TempENV\\UniCMD.data");
                 }
+
                 if (!Directory.Exists("TempENV\\UniCMD.data\\Marcos"))
                 {
                     Directory.CreateDirectory("TempENV\\UniCMD.data\\Macros");
                     Print("[CR] TempENV\\UniCMD.data\\Macros");
                 }
-                if (!Directory.Exists("TempENV\\UniCMD.data\\Marcos\\UniPKG"))
+
+                if (!Directory.Exists("TempENV\\UniCMD.data\\UniPKG"))
                 {
-                    Directory.CreateDirectory("TempENV\\UniCMD.data\\Macros\\UniPKG");
-                    Print("[CR] TempENV\\UniCMD.data\\Macros\\UniPKG");
+                    Directory.CreateDirectory("TempENV\\UniCMD.data\\UniPKG");
+                    Print("[CR] TempENV\\UniCMD.data\\UniPKG");
                 }
-                if (!Directory.Exists("TempENV\\UniCMD.data\\Marcos\\UniPKG\\pkginfo"))
+
+                if (!Directory.Exists("TempENV\\UniCMD.data\\UniPKG\\pkginfo"))
                 {
                     Directory.CreateDirectory("TempENV\\UniCMD.data\\UniPKG\\pkginfo");
-                    Print("[CR] TempENV\\UniCMD.data\\Macros\\UniPKG\\pkginfo");
+                    Print("[CR] TempENV\\UniCMD.data\\UniPKG\\pkginfo");
                 }
+
                 Print("Environment ready!");
             }
             catch (Exception ex)
