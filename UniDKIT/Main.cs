@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "2.0r";
+        public static string Version = "2.2r";
         private DiscordRpcClient client;
 
         // whar
@@ -613,7 +613,7 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(CoralStyle, @"\b(run|end)", RegexOptions.IgnoreCase);
 
             // customization and ironpython
-            if (UnscVersion == "6.0r")
+            if (UnscVersion != "5.4r")
             {
                 e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.IgnoreCase);
                 e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(stxt|ptxt|tmdl)", RegexOptions.IgnoreCase);
