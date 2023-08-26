@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "3.0r";
+        public static string Version = "3.1r";
         private DiscordRpcClient client;
 
         // whar
@@ -166,7 +166,7 @@ namespace UniDKIT
             "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "pause",
 
             // other slash commands
-            "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in"
+            "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in", "/s"
         };
 
         public Main()
@@ -654,7 +654,7 @@ namespace UniDKIT
             // networx
             e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.IgnoreCase);
-            if (UnscVersion == "7.0r")
+            if (UnscVersion == "7.0r" || UnscVersion == "8.0r")
             {
                 e.ChangedRange.SetStyle(CoralStyle, @"\b(dload|fc)", RegexOptions.IgnoreCase);
             }
@@ -701,9 +701,10 @@ namespace UniDKIT
                 e.ChangedRange.SetStyle(GreenStyle, @"/name", RegexOptions.IgnoreCase);
                 e.ChangedRange.SetStyle(GreenStyle, @"/args", RegexOptions.IgnoreCase);
             }
-            if (UnscVersion == "7.0r")
+            if (UnscVersion == "7.0r" || UnscVersion == "8.0r")
             {
                 e.ChangedRange.SetStyle(GreenStyle, @"/in", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(GreenStyle, @"/s", RegexOptions.IgnoreCase);
             }
         }
     }
