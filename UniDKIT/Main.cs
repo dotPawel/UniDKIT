@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "2.2r";
+        public static string Version = "3.0r";
         private DiscordRpcClient client;
 
         // whar
@@ -33,7 +33,7 @@ namespace UniDKIT
 
         public static string OldFileContents;
 
-        public static string UnscVersion = "7.0r";
+        public static string UnscVersion = "8.0r";
         public static int counter2;
 
         public string[] Autocomplete54 =
@@ -41,7 +41,7 @@ namespace UniDKIT
             // filesys
             "file", "dir", "sd",
 
-            "make", "del", "rd", "wrt", "cln", "rnm", "zip", "unzip",
+            "make", "del", "rd", "wrt", "cln", "rnm", "lst", "zip", "unzip",
 
             // uniscript/pkg
             "uniscript", "unipkg",
@@ -74,7 +74,7 @@ namespace UniDKIT
             // filesys
             "file", "dir", "sd",
 
-            "make", "del", "rd", "wrt", "cln", "rnm", "zip", "unzip",
+            "make", "del", "rd", "wrt", "cln", "rnm", "lst", "zip", "unzip",
 
             // uniscript/pkg
             "uniscript", "unipkg",
@@ -106,7 +106,7 @@ namespace UniDKIT
             // filesys
             "file", "dir", "sd",
 
-            "make", "del", "rd", "wrt", "cln", "rnm", "zip", "unzip",
+            "make", "del", "rd", "wrt", "cln", "rnm", "lst", "zip", "unzip",
 
             // uniscript/pkg
             "uniscript", "unipkg",
@@ -133,6 +133,41 @@ namespace UniDKIT
             // other slash commands
             "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in"
         };
+        public string[] Autocomplete80 =
+        {
+            // filesys
+            "file", "dir", "sd",
+
+            "make", "del", "rd", "wrt", "wrtln", "cln", "rnm", "lst", "zip", "unzip",
+
+            // uniscript/pkg
+            "uniscript", "unipkg",
+
+            "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
+            
+            // networx
+            "net", "ping", "dload", "fc",
+
+            // process
+            "proc", "run", "end",
+
+            // customization and ironpython
+            "irpy", "stxt", "ptxt", "tmdl", "cfg",
+
+            "wrt-template", "open", "example", "parse",
+
+            // version manager (vm)
+            "vm", "pull", "comp",
+
+            // acl backbridge
+            "acl_bb", "start",
+
+            // misc.
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "pause",
+
+            // other slash commands
+            "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in"
+        };
 
         public Main()
         {
@@ -140,7 +175,7 @@ namespace UniDKIT
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            AutocompleteMenu.Items = Autocomplete70;
+            AutocompleteMenu.Items = Autocomplete80;
             this.Text = "UniDKIT // " + Version;
 
             VersionText.Text = "Version // " + Version;
@@ -510,6 +545,11 @@ namespace UniDKIT
                 UnscVersionText.Text = "7.0r";
                 AutocompleteMenu.Items = Autocomplete70;
             }
+            if (e.ClickedItem.Text == "8.0r")
+            {
+                UnscVersionText.Text = "8.0r";
+                AutocompleteMenu.Items = Autocomplete80;
+            }
             Textbox.OnTextChanged();
         }
 
@@ -589,6 +629,10 @@ namespace UniDKIT
             // filesys
             e.ChangedRange.SetStyle(BlueStyle, @"\b(file|dir|sd)", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(YellowStyle, @"\b(make|del|rd|wrt|cln|rnm|lst|zip|unzip)", RegexOptions.IgnoreCase);
+            if (UnscVersion == "8.0r")
+            {
+                e.ChangedRange.SetStyle(YellowStyle, @"\b(wrtln)", RegexOptions.IgnoreCase);
+            }
 
             // uniscript/pkg
             e.ChangedRange.SetStyle(PurpleStyle, @"\b(uniscript|unipkg)", RegexOptions.IgnoreCase);
@@ -599,6 +643,13 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(GreenStyle, @"/uinst", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.IgnoreCase);
+
+            // version manager (vm)
+            if (UnscVersion == "8.0r")
+            {
+                e.ChangedRange.SetStyle(PurpleStyle, @"vm", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(CoralStyle, @"\b(pull|comp)", RegexOptions.IgnoreCase);
+            }
 
             // networx
             e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.IgnoreCase);

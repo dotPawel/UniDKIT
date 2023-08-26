@@ -48,6 +48,7 @@
             versionToolStripMenuItem = new ToolStripMenuItem();
             rToolStripMenuItem = new ToolStripMenuItem();
             rToolStripMenuItem1 = new ToolStripMenuItem();
+            rToolStripMenuItem2 = new ToolStripMenuItem();
             uniDKITToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -74,7 +75,7 @@
             StatusText = new Label();
             MainContainer = new SplitContainer();
             AutocompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
-            rToolStripMenuItem2 = new ToolStripMenuItem();
+            rToolStripMenuItem3 = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -203,7 +204,7 @@
             // 
             // versionToolStripMenuItem
             // 
-            versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1, rToolStripMenuItem2 });
+            versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1, rToolStripMenuItem2, rToolStripMenuItem3 });
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
             versionToolStripMenuItem.Size = new Size(180, 22);
             versionToolStripMenuItem.Text = "Version";
@@ -220,6 +221,12 @@
             rToolStripMenuItem1.Name = "rToolStripMenuItem1";
             rToolStripMenuItem1.Size = new Size(180, 22);
             rToolStripMenuItem1.Text = "6.0r";
+            // 
+            // rToolStripMenuItem2
+            // 
+            rToolStripMenuItem2.Name = "rToolStripMenuItem2";
+            rToolStripMenuItem2.Size = new Size(180, 22);
+            rToolStripMenuItem2.Text = "7.0r";
             // 
             // uniDKITToolStripMenuItem
             // 
@@ -475,11 +482,11 @@
             AutocompleteMenu.MinFragmentLength = 1;
             AutocompleteMenu.TargetControlWrapper = null;
             // 
-            // rToolStripMenuItem2
+            // rToolStripMenuItem3
             // 
-            rToolStripMenuItem2.Name = "rToolStripMenuItem2";
-            rToolStripMenuItem2.Size = new Size(180, 22);
-            rToolStripMenuItem2.Text = "7.0r";
+            rToolStripMenuItem3.Name = "rToolStripMenuItem3";
+            rToolStripMenuItem3.Size = new Size(180, 22);
+            rToolStripMenuItem3.Text = "8.0r";
             // 
             // Main
             // 
@@ -562,6 +569,7 @@
         private AutocompleteMenuNS.AutocompleteMenu AutocompleteMenu;
         private ToolStripMenuItem clearTextboxStyleToolStripMenuItem;
         private ToolStripMenuItem rToolStripMenuItem2;
+        private ToolStripMenuItem rToolStripMenuItem3;
 
         /*
             lkhvoiygulvhkljkblkjhjklbkjlbk gjhvfg
