@@ -49,6 +49,7 @@
             rToolStripMenuItem = new ToolStripMenuItem();
             rToolStripMenuItem1 = new ToolStripMenuItem();
             rToolStripMenuItem2 = new ToolStripMenuItem();
+            rToolStripMenuItem3 = new ToolStripMenuItem();
             uniDKITToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -75,7 +76,6 @@
             StatusText = new Label();
             MainContainer = new SplitContainer();
             AutocompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
-            rToolStripMenuItem3 = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -206,27 +206,33 @@
             // 
             versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1, rToolStripMenuItem2, rToolStripMenuItem3 });
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            versionToolStripMenuItem.Size = new Size(180, 22);
+            versionToolStripMenuItem.Size = new Size(112, 22);
             versionToolStripMenuItem.Text = "Version";
             versionToolStripMenuItem.DropDownItemClicked += versionToolStripMenuItem_DropDownItemClicked;
             // 
             // rToolStripMenuItem
             // 
             rToolStripMenuItem.Name = "rToolStripMenuItem";
-            rToolStripMenuItem.Size = new Size(180, 22);
+            rToolStripMenuItem.Size = new Size(93, 22);
             rToolStripMenuItem.Text = "5.4r";
             // 
             // rToolStripMenuItem1
             // 
             rToolStripMenuItem1.Name = "rToolStripMenuItem1";
-            rToolStripMenuItem1.Size = new Size(180, 22);
+            rToolStripMenuItem1.Size = new Size(93, 22);
             rToolStripMenuItem1.Text = "6.0r";
             // 
             // rToolStripMenuItem2
             // 
             rToolStripMenuItem2.Name = "rToolStripMenuItem2";
-            rToolStripMenuItem2.Size = new Size(180, 22);
+            rToolStripMenuItem2.Size = new Size(93, 22);
             rToolStripMenuItem2.Text = "7.0r";
+            // 
+            // rToolStripMenuItem3
+            // 
+            rToolStripMenuItem3.Name = "rToolStripMenuItem3";
+            rToolStripMenuItem3.Size = new Size(93, 22);
+            rToolStripMenuItem3.Text = "8.0r";
             // 
             // uniDKITToolStripMenuItem
             // 
@@ -400,6 +406,8 @@
             Textbox.BackColor = Color.FromArgb(40, 40, 40);
             Textbox.CharHeight = 15;
             Textbox.CharWidth = 8;
+            Textbox.CommentPrefix = "!!";
+            Textbox.CurrentLineColor = Color.FromArgb(80, 80, 80);
             Textbox.Cursor = Cursors.IBeam;
             Textbox.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             Textbox.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
@@ -482,12 +490,6 @@
             AutocompleteMenu.MinFragmentLength = 1;
             AutocompleteMenu.TargetControlWrapper = null;
             // 
-            // rToolStripMenuItem3
-            // 
-            rToolStripMenuItem3.Name = "rToolStripMenuItem3";
-            rToolStripMenuItem3.Size = new Size(180, 22);
-            rToolStripMenuItem3.Text = "8.0r";
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -498,7 +500,7 @@
             Controls.Add(StatusPanel);
             Controls.Add(panel1);
             Controls.Add(TopPanel);
-            ForeColor = SystemColors.Control;
+            ForeColor = Color.White;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = Toolbar;
             Name = "Main";

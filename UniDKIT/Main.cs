@@ -13,7 +13,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "3.1r";
+        public static string Version = "3.2r";
         private DiscordRpcClient client;
 
         // whar
@@ -144,6 +144,9 @@ namespace UniDKIT
             "uniscript", "unipkg",
 
             "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
+
+            // uniscript user input utils (usrin)
+            "usrin", "set", "rdf", "repl", "toupp", "tolwr",
             
             // networx
             "net", "ping", "dload", "fc",
@@ -644,11 +647,14 @@ namespace UniDKIT
             e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.IgnoreCase);
             e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.IgnoreCase);
 
-            // version manager (vm)
+            // version manager (vm) && usrin utils
             if (UnscVersion == "8.0r")
             {
                 e.ChangedRange.SetStyle(PurpleStyle, @"vm", RegexOptions.IgnoreCase);
                 e.ChangedRange.SetStyle(CoralStyle, @"\b(pull|comp)", RegexOptions.IgnoreCase);
+
+                e.ChangedRange.SetStyle(PurpleStyle, @"usrin", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(CoralStyle, @"\b(set|rdf|repl|toupp|tolwr)", RegexOptions.IgnoreCase);
             }
 
             // networx

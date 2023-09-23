@@ -77,6 +77,9 @@ namespace UniDKIT
                     case string s when s.Contains("UniCMDVer="):
                         OutputTextbox.Text += "\r\n  For version : " + line.Replace("UniCMDVer=", "");
                         break;
+                    case string s when s.Contains("Description="):
+                        OutputTextbox.Text += "\r\n  Description : " + line.Replace("Description=", "").Replace(@"\n", "\n");
+                        break;
                 }
             }
 
