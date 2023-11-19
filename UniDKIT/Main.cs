@@ -7,33 +7,34 @@ using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "3.2r";
+        public static string Version = "4.0r";
         private DiscordRpcClient client;
 
         // whar
-        Style BlueStyle = new TextStyle(Brushes.SteelBlue, null, FontStyle.Regular);
-        Style AzureStyle = new TextStyle(Brushes.Aquamarine, null, FontStyle.Regular);
-        Style YellowStyle = new TextStyle(Brushes.Wheat, null, FontStyle.Regular);
-        Style PurpleStyle = new TextStyle(Brushes.MediumPurple, null, FontStyle.Regular);
-        Style BlueVioletStyle = new TextStyle(Brushes.BlueViolet, null, FontStyle.Regular);
-        Style DarkOliveStyle = new TextStyle(Brushes.DarkOliveGreen, null, FontStyle.Regular);
-        Style TealStyle = new TextStyle(Brushes.Teal, null, FontStyle.Regular);
-        Style ChartStyle = new TextStyle(Brushes.DarkTurquoise, null, FontStyle.Regular);
-        Style GreenStyle = new TextStyle(Brushes.SpringGreen, null, FontStyle.Regular);
-        Style CoralStyle = new TextStyle(Brushes.Coral, null, FontStyle.Regular);
+        static Style BlueStyle = new TextStyle(Brushes.SteelBlue, null, FontStyle.Regular);
+        static Style AzureStyle = new TextStyle(Brushes.Aquamarine, null, FontStyle.Regular);
+        static Style YellowStyle = new TextStyle(Brushes.Wheat, null, FontStyle.Regular);
+        static Style PurpleStyle = new TextStyle(Brushes.MediumPurple, null, FontStyle.Regular);
+        static Style BlueVioletStyle = new TextStyle(Brushes.BlueViolet, null, FontStyle.Regular);
+        static Style DarkOliveStyle = new TextStyle(Brushes.DarkOliveGreen, null, FontStyle.Regular);
+        static Style TealStyle = new TextStyle(Brushes.Teal, null, FontStyle.Regular);
+        static Style ChartStyle = new TextStyle(Brushes.DarkTurquoise, null, FontStyle.Regular);
+        static Style GreenStyle = new TextStyle(Brushes.SpringGreen, null, FontStyle.Regular);
+        static Style CoralStyle = new TextStyle(Brushes.Coral, null, FontStyle.Regular);
 
         public static string FilePath;
         public static string DirPath;
 
         public static string OldFileContents;
 
-        public static string UnscVersion = "8.0r";
+        public static string UnscVersion = "9.0r";
         public static int counter2;
 
         public string[] Autocomplete54 =
@@ -171,6 +172,418 @@ namespace UniDKIT
             // other slash commands
             "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in", "/s"
         };
+        public string[] Autocomplete90 =
+        {
+            // filesys
+            "file", "dir", "sd",
+
+            "make", "del", "rd", "wrt", "wrtln", "cln", "rnm", "lst", "zip", "unzip",
+
+            // uniscript/pkg
+            "uniscript", "unipkg",
+
+            "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list",
+
+            // uniscript user input utils (usrin)
+            "usrin", "set", "rdf", "repl", "toupp", "tolwr",
+
+            // dictionary
+            "dict", "add", "rem",
+            
+            // networx
+            "net", "ping", "dload", "fc",
+
+            // process
+            "proc", "run", "end",
+
+            // customization and ironpython
+            "irpy", "stxt", "ptxt", "tmdl", "cfg",
+
+            "wrt-template", "open", "example", "parse",
+
+            // version manager (vm)
+            "vm", "pull", "comp",
+
+            // acl backbridge
+            "acl_bb", "start",
+
+            // misc.
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "pause",
+
+            // other slash commands
+            "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in", "/s"
+        };
+
+        public static Dictionary<string, Style> CurrentHighlighting = new Dictionary<string, Style>();
+
+        public static Dictionary<string, Style> Highlighting54 = new Dictionary<string, Style>()
+        {
+            {"file", BlueStyle},
+            {"dir", BlueStyle},
+            {"sd", BlueStyle},
+            {"make", YellowStyle},
+            {"del", YellowStyle},
+            {"rd", YellowStyle},
+            {"wrt", YellowStyle},
+            {"cln", YellowStyle},
+            {"rnm", YellowStyle},
+            {"lst", YellowStyle},
+            {"zip", YellowStyle},
+            {"unzip", YellowStyle},
+
+            {"unipkg", YellowStyle},
+            {"uniscript", YellowStyle},
+            {"/foinfo", GreenStyle},
+            {"/finfo", GreenStyle},
+            {"/dpkg", GreenStyle},
+            {"/uinst", GreenStyle},
+            {"/inst", GreenStyle},
+            {"/list", GreenStyle},
+
+            {"net", TealStyle},
+            {"ping", CoralStyle},
+
+            {"proc", AzureStyle},
+            {"run", CoralStyle},
+            {"end", CoralStyle},
+
+            {"ironpython", AzureStyle},
+
+            {"starttext", BlueVioletStyle},
+            {"prompttext", BlueVioletStyle},
+            {"textmodules", BlueVioletStyle},
+            {"config", DarkOliveStyle},
+
+            {"create", CoralStyle},
+            {"write-template", CoralStyle},
+            {"rewrite", CoralStyle},
+            {"write", CoralStyle},
+            {"print", CoralStyle},
+            {"open", CoralStyle},
+            {"example", CoralStyle},
+            {"parse", CoralStyle},
+
+            {"acl_bb", DarkOliveStyle},
+            {"start", CoralStyle},
+
+            {"help", ChartStyle},
+            {"clr", ChartStyle},
+            {"about", ChartStyle},
+            {"echo", ChartStyle},
+            {"sleep", ChartStyle},
+            {"exit", ChartStyle},
+            {"ptm-cmd", ChartStyle},
+            {"pause", ChartStyle},
+
+            {"/p", GreenStyle},
+            {"/all", GreenStyle},
+            {"/ptm", GreenStyle},
+        };
+        public static Dictionary<string, Style> Highlighting60 = new Dictionary<string, Style>()
+        {
+            {"file", BlueStyle},
+            {"dir", BlueStyle},
+            {"sd", BlueStyle},
+            {"make", YellowStyle},
+            {"del", YellowStyle},
+            {"rd", YellowStyle},
+            {"wrt", YellowStyle},
+            {"cln", YellowStyle},
+            {"rnm", YellowStyle},
+            {"lst", YellowStyle},
+            {"zip", YellowStyle},
+            {"unzip", YellowStyle},
+
+            {"unipkg", YellowStyle},
+            {"uniscript", YellowStyle},
+            {"/foinfo", GreenStyle},
+            {"/finfo", GreenStyle},
+            {"/dpkg", GreenStyle},
+            {"/uinst", GreenStyle},
+            {"/inst", GreenStyle},
+            {"/list", GreenStyle},
+
+            {"net", TealStyle},
+            {"ping", CoralStyle},
+
+            {"proc", AzureStyle},
+            {"run", CoralStyle},
+            {"end", CoralStyle},
+
+            {"irpy", AzureStyle},
+
+            {"stxt", BlueVioletStyle},
+            {"ptxt", BlueVioletStyle},
+            {"tmdl", BlueVioletStyle},
+            {"cfg", DarkOliveStyle},
+
+            {"create", CoralStyle},
+            {"wrt-template", CoralStyle},
+            {"rewrite", CoralStyle},
+            {"write", CoralStyle},
+            {"print", CoralStyle},
+            {"open", CoralStyle},
+            {"example", CoralStyle},
+            {"parse", CoralStyle},
+
+            {"acl_bb", DarkOliveStyle},
+            {"start", CoralStyle},
+
+            {"help", ChartStyle},
+            {"clr", ChartStyle},
+            {"about", ChartStyle},
+            {"echo", ChartStyle},
+            {"sleep", ChartStyle},
+            {"exit", ChartStyle},
+            {"ptm-cmd", ChartStyle},
+            {"pause", ChartStyle},
+
+            {"/p", GreenStyle},
+            {"/all", GreenStyle},
+            {"/ptm", GreenStyle},
+            {"/frc", GreenStyle},
+            {"/name", GreenStyle},
+            {"/args", GreenStyle},
+        };
+        public static Dictionary<string, Style> Highlighting70 = new Dictionary<string, Style>()
+        {
+            {"file", BlueStyle},
+            {"dir", BlueStyle},
+            {"sd", BlueStyle},
+            {"make", YellowStyle},
+            {"del", YellowStyle},
+            {"rd", YellowStyle},
+            {"wrt", YellowStyle},
+            {"cln", YellowStyle},
+            {"rnm", YellowStyle},
+            {"lst", YellowStyle},
+            {"zip", YellowStyle},
+            {"unzip", YellowStyle},
+
+            {"unipkg", YellowStyle},
+            {"uniscript", YellowStyle},
+            {"/foinfo", GreenStyle},
+            {"/finfo", GreenStyle},
+            {"/dpkg", GreenStyle},
+            {"/uinst", GreenStyle},
+            {"/inst", GreenStyle},
+            {"/list", GreenStyle},
+
+            {"net", TealStyle},
+            {"ping", CoralStyle},
+            {"dload", CoralStyle},
+            {"fc", CoralStyle},
+
+            {"proc", AzureStyle},
+            {"run", CoralStyle},
+            {"end", CoralStyle},
+
+            {"irpy", AzureStyle},
+
+            {"stxt", BlueVioletStyle},
+            {"ptxt", BlueVioletStyle},
+            {"tmdl", BlueVioletStyle},
+            {"cfg", DarkOliveStyle},
+
+            {"create", CoralStyle},
+            {"wrt-template", CoralStyle},
+            {"rewrite", CoralStyle},
+            {"write", CoralStyle},
+            {"print", CoralStyle},
+            {"open", CoralStyle},
+            {"example", CoralStyle},
+            {"parse", CoralStyle},
+
+            {"acl_bb", DarkOliveStyle},
+            {"start", CoralStyle},
+
+            {"help", ChartStyle},
+            {"clr", ChartStyle},
+            {"about", ChartStyle},
+            {"echo", ChartStyle},
+            {"sleep", ChartStyle},
+            {"exit", ChartStyle},
+            {"ptm-cmd", ChartStyle},
+            {"pause", ChartStyle},
+
+            {"/p", GreenStyle},
+            {"/all", GreenStyle},
+            {"/ptm", GreenStyle},
+            {"/frc", GreenStyle},
+            {"/name", GreenStyle},
+            {"/args", GreenStyle},
+            {"/in", GreenStyle},
+            {"/s", GreenStyle},
+        };
+        public static Dictionary<string, Style> Highlighting80 = new Dictionary<string, Style>()
+        {
+            {"file", BlueStyle},
+            {"dir", BlueStyle},
+            {"sd", BlueStyle},
+            {"make", YellowStyle},
+            {"del", YellowStyle},
+            {"rd", YellowStyle},
+            {"wrt", YellowStyle},
+            {"wrtln", YellowStyle},
+            {"cln", YellowStyle},
+            {"rnm", YellowStyle},
+            {"lst", YellowStyle},
+            {"zip", YellowStyle},
+            {"unzip", YellowStyle},
+
+            {"unipkg", YellowStyle},
+            {"uniscript", YellowStyle},
+            {"/foinfo", GreenStyle},
+            {"/finfo", GreenStyle},
+            {"/dpkg", GreenStyle},
+            {"/uinst", GreenStyle},
+            {"/inst", GreenStyle},
+            {"/list", GreenStyle},
+
+            {"vm", PurpleStyle},
+            {"pull", CoralStyle},
+            {"comp", CoralStyle},
+
+            {"usrin", PurpleStyle},
+            {"set", CoralStyle},
+            {"rdf", CoralStyle},
+            {"repl", CoralStyle},
+            {"toupp", CoralStyle},
+            {"tolwr", CoralStyle},
+
+            {"net", TealStyle},
+            {"ping", CoralStyle},
+            {"dload", CoralStyle},
+            {"fc", CoralStyle},
+
+            {"proc", AzureStyle},
+            {"run", CoralStyle},
+            {"end", CoralStyle},
+
+            {"irpy", AzureStyle},
+
+            {"stxt", BlueVioletStyle},
+            {"ptxt", BlueVioletStyle},
+            {"tmdl", BlueVioletStyle},
+            {"cfg", DarkOliveStyle},
+
+            {"create", CoralStyle},
+            {"wrt-template", CoralStyle},
+            {"rewrite", CoralStyle},
+            {"write", CoralStyle},
+            {"print", CoralStyle},
+            {"open", CoralStyle},
+            {"example", CoralStyle},
+            {"parse", CoralStyle},
+
+            {"acl_bb", DarkOliveStyle},
+            {"start", CoralStyle},
+
+            {"help", ChartStyle},
+            {"clr", ChartStyle},
+            {"about", ChartStyle},
+            {"echo", ChartStyle},
+            {"sleep", ChartStyle},
+            {"exit", ChartStyle},
+            {"ptm-cmd", ChartStyle},
+            {"pause", ChartStyle},
+
+            {"/p", GreenStyle},
+            {"/all", GreenStyle},
+            {"/ptm", GreenStyle},
+            {"/frc", GreenStyle},
+            {"/name", GreenStyle},
+            {"/args", GreenStyle},
+            {"/in", GreenStyle},
+            {"/s", GreenStyle},
+        };
+        public static Dictionary<string, Style> Highlighting90 = new Dictionary<string, Style>()
+        {
+            {"file", BlueStyle},
+            {"dir", BlueStyle},
+            {"sd", BlueStyle},
+            {"make", YellowStyle},
+            {"del", YellowStyle},
+            {"rd", YellowStyle},
+            {"wrt", YellowStyle},
+            {"wrtln", YellowStyle},
+            {"cln", YellowStyle},
+            {"rnm", YellowStyle},
+            {"lst", YellowStyle},
+            {"zip", YellowStyle},
+            {"unzip", YellowStyle},
+
+            {"unipkg", YellowStyle},
+            {"uniscript", YellowStyle},
+            {"/foinfo", GreenStyle},
+            {"/finfo", GreenStyle},
+            {"/dpkg", GreenStyle},
+            {"/uinst", GreenStyle},
+            {"/inst", GreenStyle},
+            {"/list", GreenStyle},
+
+            {"vm", PurpleStyle},
+            {"pull", CoralStyle},
+            {"comp", CoralStyle},
+
+            {"usrin", PurpleStyle},
+            {"set", CoralStyle},
+            {"rdf", CoralStyle},
+            {"repl", CoralStyle},
+            {"toupp", CoralStyle},
+            {"tolwr", CoralStyle},
+
+            {"dict", PurpleStyle},
+            {"add", CoralStyle},
+            {"rem", CoralStyle},
+
+            {"net", TealStyle},
+            {"ping", CoralStyle},
+            {"dload", CoralStyle},
+            {"fc", CoralStyle},
+
+            {"proc", AzureStyle},
+            {"run", CoralStyle},
+            {"end", CoralStyle},
+
+            {"irpy", AzureStyle},
+
+            {"stxt", BlueVioletStyle},
+            {"ptxt", BlueVioletStyle},
+            {"tmdl", BlueVioletStyle},
+            {"cfg", DarkOliveStyle},
+
+            {"create", CoralStyle},
+            {"wrt-template", CoralStyle},
+            {"rewrite", CoralStyle},
+            {"write", CoralStyle},
+            {"print", CoralStyle},
+            {"open", CoralStyle},
+            {"example", CoralStyle},
+            {"parse", CoralStyle},
+
+            {"acl_bb", DarkOliveStyle},
+            {"start", CoralStyle},
+
+            {"help", ChartStyle},
+            {"clr", ChartStyle},
+            {"about", ChartStyle},
+            {"echo", ChartStyle},
+            {"sleep", ChartStyle},
+            {"exit", ChartStyle},
+            {"ptm-cmd", ChartStyle},
+            {"pause", ChartStyle},
+
+            {"/p", GreenStyle},
+            {"/all", GreenStyle},
+            {"/ptm", GreenStyle},
+            {"/frc", GreenStyle},
+            {"/name", GreenStyle},
+            {"/args", GreenStyle},
+            {"/in", GreenStyle},
+            {"/s", GreenStyle},
+        };
+
 
         public Main()
         {
@@ -178,7 +591,10 @@ namespace UniDKIT
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            AutocompleteMenu.Items = Autocomplete80;
+            AutocompleteMenu.Items = Autocomplete90;
+            UnscVersionText.Text = UnscVersion;
+            CurrentHighlighting = Highlighting90;
+
             this.Text = "UniDKIT // " + Version;
 
             VersionText.Text = "Version // " + Version;
@@ -192,8 +608,6 @@ namespace UniDKIT
             {
                 testingToolStripMenuItem.Visible = false;
             }
-
-            UnscVersionText.Text = UnscVersion;
 
             client = new DiscordRpcClient("1118613368866099200");
             client.Initialize();
@@ -533,26 +947,30 @@ namespace UniDKIT
         private void versionToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             UnscVersion = e.ClickedItem.Text;
-            if (e.ClickedItem.Text == "5.4r")
+            switch (e.ClickedItem.Text)
             {
-                UnscVersionText.Text = "5.4r";
-                AutocompleteMenu.Items = Autocomplete54;
+                case "5.4r":
+                    CurrentHighlighting = Highlighting54;
+                    AutocompleteMenu.Items = Autocomplete54;
+                    break;
+                case "6.0r":
+                    CurrentHighlighting = Highlighting60;
+                    AutocompleteMenu.Items = Autocomplete60;
+                    break;
+                case "7.0r":
+                    CurrentHighlighting = Highlighting70;
+                    AutocompleteMenu.Items = Autocomplete70;
+                    break;
+                case "8.0r":
+                    CurrentHighlighting = Highlighting80;
+                    AutocompleteMenu.Items = Autocomplete80;
+                    break;
+                case "9.0r":
+                    CurrentHighlighting = Highlighting90;
+                    AutocompleteMenu.Items = Autocomplete90;
+                    break;
             }
-            if (e.ClickedItem.Text == "6.0r")
-            {
-                UnscVersionText.Text = "6.0r";
-                AutocompleteMenu.Items = Autocomplete60;
-            }
-            if (e.ClickedItem.Text == "7.0r")
-            {
-                UnscVersionText.Text = "7.0r";
-                AutocompleteMenu.Items = Autocomplete70;
-            }
-            if (e.ClickedItem.Text == "8.0r")
-            {
-                UnscVersionText.Text = "8.0r";
-                AutocompleteMenu.Items = Autocomplete80;
-            }
+            UnscVersionText.Text = e.ClickedItem.Text;
             Textbox.OnTextChanged();
         }
 
@@ -623,94 +1041,11 @@ namespace UniDKIT
         }
         private void Textbox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-            // This is still so fucked
-            // Christ how did it even get this bad
-
-            // I'm not fixing this until I cannot add more to it
-
+            // no idea if this is a better solution than what was here before
             e.ChangedRange.ClearStyle(BlueStyle, AzureStyle, YellowStyle, PurpleStyle, BlueVioletStyle, DarkOliveStyle, TealStyle, ChartStyle, GreenStyle, CoralStyle);
-            // filesys
-            e.ChangedRange.SetStyle(BlueStyle, @"\b(file|dir|sd)", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(YellowStyle, @"\b(make|del|rd|wrt|cln|rnm|lst|zip|unzip)", RegexOptions.IgnoreCase);
-            if (UnscVersion == "8.0r")
+            foreach (var entry in CurrentHighlighting)
             {
-                e.ChangedRange.SetStyle(YellowStyle, @"\b(wrtln)", RegexOptions.IgnoreCase);
-            }
-
-            // uniscript/pkg
-            e.ChangedRange.SetStyle(PurpleStyle, @"\b(uniscript|unipkg)", RegexOptions.IgnoreCase);
-            // idk man it just kinda needs 2 be like that
-            e.ChangedRange.SetStyle(GreenStyle, @"/foinfo", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/finfo", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/dpkg", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/uinst", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/inst", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/list", RegexOptions.IgnoreCase);
-
-            // version manager (vm) && usrin utils
-            if (UnscVersion == "8.0r")
-            {
-                e.ChangedRange.SetStyle(PurpleStyle, @"vm", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(CoralStyle, @"\b(pull|comp)", RegexOptions.IgnoreCase);
-
-                e.ChangedRange.SetStyle(PurpleStyle, @"usrin", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(CoralStyle, @"\b(set|rdf|repl|toupp|tolwr)", RegexOptions.IgnoreCase);
-            }
-
-            // networx
-            e.ChangedRange.SetStyle(TealStyle, @"net", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(CoralStyle, @"ping", RegexOptions.IgnoreCase);
-            if (UnscVersion == "7.0r" || UnscVersion == "8.0r")
-            {
-                e.ChangedRange.SetStyle(CoralStyle, @"\b(dload|fc)", RegexOptions.IgnoreCase);
-            }
-
-            // process
-            e.ChangedRange.SetStyle(AzureStyle, @"proc", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(CoralStyle, @"\b(run|end)", RegexOptions.IgnoreCase);
-
-            // customization and ironpython
-            if (UnscVersion != "5.4r")
-            {
-                e.ChangedRange.SetStyle(AzureStyle, @"irpy", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(stxt|ptxt|tmdl)", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(DarkOliveStyle, @"cfg", RegexOptions.IgnoreCase);
-
-                e.ChangedRange.SetStyle(CoralStyle, @"wrt-template", RegexOptions.IgnoreCase);
-            }
-            else
-            {
-                e.ChangedRange.SetStyle(AzureStyle, @"ironpython", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(BlueVioletStyle, @"\b(starttext|prompttext|textmodules)", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(DarkOliveStyle, @"config", RegexOptions.IgnoreCase);
-
-                e.ChangedRange.SetStyle(CoralStyle, @"\b(create|write-template|rewrite|write|print)", RegexOptions.IgnoreCase);
-            }
-            e.ChangedRange.SetStyle(CoralStyle, @"\b(open|example|parse)", RegexOptions.IgnoreCase);
-            // God save us all
-
-            // aerocl backbridge
-            e.ChangedRange.SetStyle(DarkOliveStyle, @"acl_bb", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(CoralStyle, @"start", RegexOptions.IgnoreCase);
-
-            // misc.
-            e.ChangedRange.SetStyle(ChartStyle, @"\b(help|clr|about|echo|sleep|exit|ptm-cmd|pause)", RegexOptions.IgnoreCase);
-
-            // other slash commands
-            e.ChangedRange.SetStyle(GreenStyle, @"/p", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/all", RegexOptions.IgnoreCase);
-            e.ChangedRange.SetStyle(GreenStyle, @"/ptm", RegexOptions.IgnoreCase);
-
-            if (UnscVersion == "6.0r" || UnscVersion == "7.0r")
-            {
-                e.ChangedRange.SetStyle(GreenStyle, @"/frc", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(GreenStyle, @"/name", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(GreenStyle, @"/args", RegexOptions.IgnoreCase);
-            }
-            if (UnscVersion == "7.0r" || UnscVersion == "8.0r")
-            {
-                e.ChangedRange.SetStyle(GreenStyle, @"/in", RegexOptions.IgnoreCase);
-                e.ChangedRange.SetStyle(GreenStyle, @"/s", RegexOptions.IgnoreCase);
+                e.ChangedRange.SetStyle(entry.Value, entry.Key, RegexOptions.IgnoreCase);
             }
         }
     }
