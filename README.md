@@ -50,4 +50,4 @@ Use ``unipkg /inst UniDKIT`` to install and ``.$UniDKIT`` to launch
 Click [here](https://github.com/dotPawel/UniDKIT/releases/latest) to be redirected to the releases tab  
 After downloading unzip and launch
 
-(Make sure .NET 6.0 is installed)
+(Make sure .NET 8.0 is installed)
