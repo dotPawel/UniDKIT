@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>Resources\unidkit-icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\UniDKIT.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Resources\unidkit-icon.ico" />
+    <Content Include="Resources\UniDKIT.ico" />
   </ItemGroup>
 
   <ItemGroup>

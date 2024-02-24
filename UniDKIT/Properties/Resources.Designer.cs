@@ -61,11 +61,21 @@ namespace UniDKIT.Properties {
         }
         
         /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
+        /// </summary>
+        internal static System.Drawing.Icon UniDKIT {
+            get {
+                object obj = ResourceManager.GetObject("UniDKIT", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap unidkit_icon {
+        internal static System.Drawing.Bitmap UniDKIT_png {
             get {
-                object obj = ResourceManager.GetObject("unidkit icon", resourceCulture);
+                object obj = ResourceManager.GetObject("UniDKIT_png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

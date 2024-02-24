@@ -66,7 +66,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Placeholder";
-            Text = "ok";
+            Text = "CONGRATULATIONS";
             Load += Placeholder_Load;
             ((System.ComponentModel.ISupportInitialize)Mydlo).EndInit();
             ResumeLayout(false);

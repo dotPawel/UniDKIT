@@ -50,6 +50,8 @@
             rToolStripMenuItem1 = new ToolStripMenuItem();
             rToolStripMenuItem2 = new ToolStripMenuItem();
             rToolStripMenuItem3 = new ToolStripMenuItem();
+            rToolStripMenuItem4 = new ToolStripMenuItem();
+            rToolStripMenuItem5 = new ToolStripMenuItem();
             uniDKITToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -76,7 +78,6 @@
             StatusText = new Label();
             MainContainer = new SplitContainer();
             AutocompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
-            rToolStripMenuItem4 = new ToolStripMenuItem();
             TopPanel.SuspendLayout();
             Toolbar.SuspendLayout();
             panel1.SuspendLayout();
@@ -92,7 +93,7 @@
             // TopPanel
             // 
             TopPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            TopPanel.BackColor = Color.FromArgb(68, 68, 68);
+            TopPanel.BackColor = Color.FromArgb(68, 68, 70);
             TopPanel.Controls.Add(FilePathText);
             TopPanel.Controls.Add(Toolbar);
             TopPanel.Location = new Point(183, 9);
@@ -103,7 +104,7 @@
             // FilePathText
             // 
             FilePathText.AutoSize = true;
-            FilePathText.Location = new Point(0, 45);
+            FilePathText.Location = new Point(3, 42);
             FilePathText.Name = "FilePathText";
             FilePathText.Size = new Size(84, 15);
             FilePathText.TabIndex = 1;
@@ -205,7 +206,7 @@
             // 
             // versionToolStripMenuItem
             // 
-            versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1, rToolStripMenuItem2, rToolStripMenuItem3, rToolStripMenuItem4 });
+            versionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rToolStripMenuItem, rToolStripMenuItem1, rToolStripMenuItem2, rToolStripMenuItem3, rToolStripMenuItem4, rToolStripMenuItem5 });
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
             versionToolStripMenuItem.Size = new Size(112, 22);
             versionToolStripMenuItem.Text = "Version";
@@ -214,26 +215,38 @@
             // rToolStripMenuItem
             // 
             rToolStripMenuItem.Name = "rToolStripMenuItem";
-            rToolStripMenuItem.Size = new Size(180, 22);
+            rToolStripMenuItem.Size = new Size(99, 22);
             rToolStripMenuItem.Text = "5.4r";
             // 
             // rToolStripMenuItem1
             // 
             rToolStripMenuItem1.Name = "rToolStripMenuItem1";
-            rToolStripMenuItem1.Size = new Size(180, 22);
+            rToolStripMenuItem1.Size = new Size(99, 22);
             rToolStripMenuItem1.Text = "6.0r";
             // 
             // rToolStripMenuItem2
             // 
             rToolStripMenuItem2.Name = "rToolStripMenuItem2";
-            rToolStripMenuItem2.Size = new Size(180, 22);
+            rToolStripMenuItem2.Size = new Size(99, 22);
             rToolStripMenuItem2.Text = "7.0r";
             // 
             // rToolStripMenuItem3
             // 
             rToolStripMenuItem3.Name = "rToolStripMenuItem3";
-            rToolStripMenuItem3.Size = new Size(180, 22);
+            rToolStripMenuItem3.Size = new Size(99, 22);
             rToolStripMenuItem3.Text = "8.0r";
+            // 
+            // rToolStripMenuItem4
+            // 
+            rToolStripMenuItem4.Name = "rToolStripMenuItem4";
+            rToolStripMenuItem4.Size = new Size(99, 22);
+            rToolStripMenuItem4.Text = "9.0r";
+            // 
+            // rToolStripMenuItem5
+            // 
+            rToolStripMenuItem5.Name = "rToolStripMenuItem5";
+            rToolStripMenuItem5.Size = new Size(99, 22);
+            rToolStripMenuItem5.Text = "10.0r";
             // 
             // uniDKITToolStripMenuItem
             // 
@@ -311,35 +324,35 @@
             // packageVerifierToolStripMenuItem
             // 
             packageVerifierToolStripMenuItem.Name = "packageVerifierToolStripMenuItem";
-            packageVerifierToolStripMenuItem.Size = new Size(235, 22);
+            packageVerifierToolStripMenuItem.Size = new Size(297, 22);
             packageVerifierToolStripMenuItem.Text = "Package verifier";
             packageVerifierToolStripMenuItem.Click += packageVerifierToolStripMenuItem_Click;
             // 
             // packageInformationParserToolStripMenuItem
             // 
             packageInformationParserToolStripMenuItem.Name = "packageInformationParserToolStripMenuItem";
-            packageInformationParserToolStripMenuItem.Size = new Size(235, 22);
+            packageInformationParserToolStripMenuItem.Size = new Size(297, 22);
             packageInformationParserToolStripMenuItem.Text = "Package information parser";
             packageInformationParserToolStripMenuItem.Click += packageInformationParserToolStripMenuItem_Click;
             // 
             // packagerDepackagerToolStripMenuItem
             // 
             packagerDepackagerToolStripMenuItem.Name = "packagerDepackagerToolStripMenuItem";
-            packagerDepackagerToolStripMenuItem.Size = new Size(235, 22);
+            packagerDepackagerToolStripMenuItem.Size = new Size(297, 22);
             packagerDepackagerToolStripMenuItem.Text = "Packager/Depackager";
             packagerDepackagerToolStripMenuItem.Click += packagerDepackagerToolStripMenuItem_Click;
             // 
             // temporaryInstallEnvironmentToolStripMenuItem
             // 
             temporaryInstallEnvironmentToolStripMenuItem.Name = "temporaryInstallEnvironmentToolStripMenuItem";
-            temporaryInstallEnvironmentToolStripMenuItem.Size = new Size(235, 22);
-            temporaryInstallEnvironmentToolStripMenuItem.Text = "Temporary install environment";
+            temporaryInstallEnvironmentToolStripMenuItem.Size = new Size(297, 22);
+            temporaryInstallEnvironmentToolStripMenuItem.Text = "TempENV (Temporary install environment)";
             temporaryInstallEnvironmentToolStripMenuItem.Click += temporaryInstallEnvironmentToolStripMenuItem_Click;
             // 
             // downloaderToolStripMenuItem
             // 
             downloaderToolStripMenuItem.Name = "downloaderToolStripMenuItem";
-            downloaderToolStripMenuItem.Size = new Size(235, 22);
+            downloaderToolStripMenuItem.Size = new Size(297, 22);
             downloaderToolStripMenuItem.Text = "Downloader";
             downloaderToolStripMenuItem.Click += downloaderToolStripMenuItem_Click;
             // 
@@ -368,7 +381,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.unidkit_icon;
+            pictureBox1.Image = Properties.Resources.UniDKIT_png;
             pictureBox1.Location = new Point(3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(53, 53);
@@ -400,7 +413,19 @@
             // 
             Textbox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Textbox.AutoCompleteBrackets = true;
-            Textbox.AutoCompleteBracketsList = (new char[] { '(', ')', '{', '}', '[', ']', '"', '"', '\'', '\'' });
+            Textbox.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
             AutocompleteMenu.SetAutocompleteMenu(Textbox, AutocompleteMenu);
             Textbox.AutoScrollMinSize = new Size(27, 15);
             Textbox.BackBrush = null;
@@ -487,21 +512,18 @@
             AutocompleteMenu.Colors = (AutocompleteMenuNS.Colors)resources.GetObject("AutocompleteMenu.Colors");
             AutocompleteMenu.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
             AutocompleteMenu.ImageList = null;
-            AutocompleteMenu.Items = (new string[] { "make" });
+            AutocompleteMenu.Items = new string[]
+    {
+    "make"
+    };
             AutocompleteMenu.MinFragmentLength = 1;
             AutocompleteMenu.TargetControlWrapper = null;
-            // 
-            // rToolStripMenuItem4
-            // 
-            rToolStripMenuItem4.Name = "rToolStripMenuItem4";
-            rToolStripMenuItem4.Size = new Size(180, 22);
-            rToolStripMenuItem4.Text = "9.0r";
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(55, 55, 55);
+            BackColor = Color.FromArgb(55, 55, 65);
             ClientSize = new Size(1096, 641);
             Controls.Add(MainContainer);
             Controls.Add(StatusPanel);
@@ -580,6 +602,7 @@
         private ToolStripMenuItem rToolStripMenuItem2;
         private ToolStripMenuItem rToolStripMenuItem3;
         private ToolStripMenuItem rToolStripMenuItem4;
+        private ToolStripMenuItem rToolStripMenuItem5;
 
         /*
             lkhvoiygulvhkljkblkjhjklbkjlbk gjhvfg

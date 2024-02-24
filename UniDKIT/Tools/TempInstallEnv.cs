@@ -21,7 +21,7 @@ namespace UniDKIT
 
         private void TempInstallEnv_Load(object sender, EventArgs e)
         {
-
+            PrepareEnv();
         }
 
         public void Print(string msg)
@@ -110,7 +110,7 @@ namespace UniDKIT
             }
             catch (Exception ex)
             {
-                Print("!!! Environment preperation failed !!! Exception : " + ex.Message);
+                Print("\n!!! Environment preperation failed !!! Exception : " + ex.Message);
             }
             Print("");
         }

@@ -14,7 +14,7 @@ namespace UniDKIT
 {
     public partial class Main : Form
     {
-        public static string Version = "4.0r";
+        public static string Version = "5.0r";
         private DiscordRpcClient client;
 
         // whar
@@ -34,7 +34,7 @@ namespace UniDKIT
 
         public static string OldFileContents;
 
-        public static string UnscVersion = "9.0r";
+        public static string UnscVersion = "10.0r";
         public static int counter2;
 
         public string[] Autocomplete54 =
@@ -195,6 +195,50 @@ namespace UniDKIT
 
             // process
             "proc", "run", "end",
+
+            // customization and ironpython
+            "irpy", "stxt", "ptxt", "tmdl", "cfg",
+
+            "wrt-template", "open", "example", "parse",
+
+            // version manager (vm)
+            "vm", "pull", "comp",
+
+            // acl backbridge
+            "acl_bb", "start",
+
+            // misc.
+            "clr", "about", "echo", "sleep", "exit", "ptm-cmd", "help", "pause",
+
+            // other slash commands
+            "/p", "/all", "/ptm", "/name", "/frc", "/args", "/in", "/s"
+        };
+        public string[] Autocomplete100 =
+        {
+            // filesys
+            "file", "dir", "sd",
+
+            "make", "del", "rd", "wrt", "wrtln", "cln", "rnm", "lst", "zip", "unzip",
+
+            // uniscript/pkg
+            "uniscript", "unipkg",
+
+            "/inst", "/foinfo", "/finfo", "/dpkg", "/uinst", "/list", "/upd", "/cupd",
+
+            // uniscript user input utils (usrin)
+            "usrin", "set", "rdf", "repl", "toupp", "tolwr",
+
+            // dictionary
+            "dict", "add", "rem",
+            
+            // networx
+            "net", "ping", "dload", "fc",
+
+            // process
+            "proc", "run", "end",
+
+            // cdll
+            "cdll", "load", "inv",
 
             // customization and ironpython
             "irpy", "stxt", "ptxt", "tmdl", "cfg",
@@ -583,7 +627,98 @@ namespace UniDKIT
             {"/in", GreenStyle},
             {"/s", GreenStyle},
         };
+        public static Dictionary<string, Style> Highlighting100 = new Dictionary<string, Style>()
+        {
+            {"file", BlueStyle},
+            {"dir", BlueStyle},
+            {"sd", BlueStyle},
+            {"make", YellowStyle},
+            {"del", YellowStyle},
+            {"rd", YellowStyle},
+            {"wrt", YellowStyle},
+            {"wrtln", YellowStyle},
+            {"cln", YellowStyle},
+            {"rnm", YellowStyle},
+            {"lst", YellowStyle},
+            {"zip", YellowStyle},
+            {"unzip", YellowStyle},
 
+            {"unipkg", YellowStyle},
+            {"uniscript", YellowStyle},
+            {"/foinfo", GreenStyle},
+            {"/finfo", GreenStyle},
+            {"/dpkg", GreenStyle},
+            {"/uinst", GreenStyle},
+            {"/inst", GreenStyle},
+            {"/list", GreenStyle},
+            {"/upd", GreenStyle},
+            {"/cupd", GreenStyle},
+
+            {"vm", PurpleStyle},
+            {"pull", CoralStyle},
+            {"comp", CoralStyle},
+
+            {"usrin", PurpleStyle},
+            {"set", CoralStyle},
+            {"rdf", CoralStyle},
+            {"repl", CoralStyle},
+            {"toupp", CoralStyle},
+            {"tolwr", CoralStyle},
+
+            {"dict", PurpleStyle},
+            {"add", CoralStyle},
+            {"rem", CoralStyle},
+
+            {"cdll", PurpleStyle},
+            {"load", CoralStyle},
+            {"inv", CoralStyle},
+
+            {"net", TealStyle},
+            {"ping", CoralStyle},
+            {"dload", CoralStyle},
+            {"fc", CoralStyle},
+
+            {"proc", AzureStyle},
+            {"run", CoralStyle},
+            {"end", CoralStyle},
+
+            {"irpy", AzureStyle},
+
+            {"stxt", BlueVioletStyle},
+            {"ptxt", BlueVioletStyle},
+            {"tmdl", BlueVioletStyle},
+            {"cfg", DarkOliveStyle},
+
+            {"create", CoralStyle},
+            {"wrt-template", CoralStyle},
+            {"rewrite", CoralStyle},
+            {"write", CoralStyle},
+            {"print", CoralStyle},
+            {"open", CoralStyle},
+            {"example", CoralStyle},
+            {"parse", CoralStyle},
+
+            {"acl_bb", DarkOliveStyle},
+            {"start", CoralStyle},
+
+            {"help", ChartStyle},
+            {"clr", ChartStyle},
+            {"about", ChartStyle},
+            {"echo", ChartStyle},
+            {"sleep", ChartStyle},
+            {"exit", ChartStyle},
+            {"ptm-cmd", ChartStyle},
+            {"pause", ChartStyle},
+
+            {"/p", GreenStyle},
+            {"/all", GreenStyle},
+            {"/ptm", GreenStyle},
+            {"/frc", GreenStyle},
+            {"/name", GreenStyle},
+            {"/args", GreenStyle},
+            {"/in", GreenStyle},
+            {"/s", GreenStyle},
+        };
 
         public Main()
         {
@@ -591,9 +726,9 @@ namespace UniDKIT
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            AutocompleteMenu.Items = Autocomplete90;
+            AutocompleteMenu.Items = Autocomplete100;
             UnscVersionText.Text = UnscVersion;
-            CurrentHighlighting = Highlighting90;
+            CurrentHighlighting = Highlighting100;
 
             this.Text = "UniDKIT // " + Version;
 
@@ -653,9 +788,10 @@ namespace UniDKIT
 
                 Assets = new Assets()
                 {
-                    LargeImageKey = "unidkit_icon",
-                    LargeImageText = "https://github.com/dotPawel/UniDKIT",
-                    //SmallImageKey = "blah"
+                    LargeImageKey = "unidkit",
+                    LargeImageText = "UniDKIT // " + Version,
+                    SmallImageKey = "uniscript",
+                    SmallImageText = "UniScript " + UnscVersion,
                 }
             });
         }
@@ -927,7 +1063,7 @@ namespace UniDKIT
                         File.WriteAllText(FilePath, Textbox.Text);
                         StatusText.Text = "Saved changes";
                     }
-                    else if (dialogResult == DialogResult.No)
+                    else
                     {
 
                     }
@@ -968,6 +1104,10 @@ namespace UniDKIT
                 case "9.0r":
                     CurrentHighlighting = Highlighting90;
                     AutocompleteMenu.Items = Autocomplete90;
+                    break;
+                case "10.0r":
+                    CurrentHighlighting = Highlighting100;
+                    AutocompleteMenu.Items = Autocomplete100;
                     break;
             }
             UnscVersionText.Text = e.ClickedItem.Text;
