@@ -4,7 +4,7 @@ UniDKIT is the offical development kit and UniScript editor for [UniversalCMD](h
 Complete with UniScript syntax highlighting, autocomplete and a set of UniPKG tools.  
 Made using WinForms and FastColoredTextbox.
 
-*.NET 6.0 required to run*
+*.NET 8.0 required to run*
 
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
